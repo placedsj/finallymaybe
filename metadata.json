@@ -1,0 +1,7 @@
+{
+  "name": "Legal Exhibit Organizer - FDSJ-739-2024",
+  "description": "A professional tool for New Brunswick Family Court case preparation. Automates exhibit extraction, categorization, captioning, and chain-of-custody documentation using AI.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
