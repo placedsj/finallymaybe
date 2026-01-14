@@ -1,35 +1,33 @@
 
 import React, { useState } from 'react';
 import { Exhibit, ExhibitCategory } from '../types';
-import { ShieldAlert, Calendar, MessageSquare, FileText, ChevronRight } from 'lucide-react';
+import { ShieldAlert, Calendar, MessageSquare, FileText, ChevronRight, Zap, Target, Scale } from 'lucide-react';
 
 export const ObstructionCalendar = ({ exhibits }: { exhibits: Exhibit[] }) => {
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   return (
-    <div className="p-5 bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-white font-bold text-sm flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-blue-500" />
-          COMMUNICATION DENSITY & OBSTRUCTION LOG
+    <div className="p-8 bg-slate-900 rounded-[2.5rem] border border-slate-800 shadow-2xl">
+      <div className="flex items-center justify-between mb-6">
+        <h3 className="text-white font-black text-sm flex items-center gap-3">
+          <Calendar className="w-5 h-5 text-blue-500" />
+          OBSTRUCTION DENSITY LOG
         </h3>
-        <span className="text-[10px] text-slate-500 font-mono tracking-tighter">REF: NB-FSA-S17</span>
+        <span className="text-[10px] text-slate-500 font-black tracking-widest uppercase bg-slate-800 px-3 py-1 rounded-full">REF: NB-FSA-S17</span>
       </div>
-      <div className="grid grid-cols-7 gap-1.5">
+      <div className="grid grid-cols-7 gap-2">
         {days.map(day => {
-          // Fix: Use ExhibitCategory enum for comparison and ensure properly scoped check
           const hasObs = exhibits.some(e => {
             const dayStr = day < 10 ? '0' + day : day.toString();
-            const dateMatch = (e.date.includes(`-${dayStr}-`) || e.date.startsWith(dayStr));
-            return dateMatch && e.category === ExhibitCategory.OBSTRUCTION;
+            return e.date.includes(dayStr) && e.category === ExhibitCategory.OBSTRUCTION;
           });
           
           return (
             <div 
               key={day} 
-              className={`h-9 w-full rounded-md flex items-center justify-center text-[10px] font-bold border transition-all duration-300 cursor-default ${
+              className={`aspect-square rounded-xl flex items-center justify-center text-xs font-black border transition-all duration-300 ${
                 hasObs 
-                ? 'bg-red-600/90 border-red-400 text-white shadow-[0_0_15px_rgba(220,38,38,0.4)] animate-pulse' 
-                : 'bg-slate-800/50 border-slate-700/50 text-slate-500 hover:border-slate-600'
+                ? 'bg-red-600 border-red-400 text-white shadow-[0_0_15px_rgba(220,38,38,0.5)] animate-pulse' 
+                : 'bg-slate-800/50 border-slate-700/50 text-slate-600'
               }`}
             >
               {day}
@@ -37,48 +35,33 @@ export const ObstructionCalendar = ({ exhibits }: { exhibits: Exhibit[] }) => {
           );
         })}
       </div>
-      <div className="mt-4 flex items-center gap-4 text-[9px] text-slate-500 font-bold uppercase tracking-widest">
-        <div className="flex items-center gap-1.5">
-          <div className="w-2 h-2 rounded-sm bg-red-600"></div>
-          Obstruction Detected
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-2 h-2 rounded-sm bg-slate-800"></div>
-          Standard Density
-        </div>
-      </div>
     </div>
   );
 };
 
-export const NarrativeGenerator = ({ exhibits }: { exhibits: Exhibit[] }) => {
-  const generateBrief = () => {
-    const safety = exhibits.filter(e => e.priority >= 8 && (e.category === ExhibitCategory.VIOLENCE || e.category === ExhibitCategory.SUBSTANCE));
-    const obs = exhibits.filter(e => e.category === ExhibitCategory.OBSTRUCTION);
-    const perjury = exhibits.filter(e => e.perjuryFlag);
-    
-    return `CASE RECONSTRUCTION (NB FSA s.17)\n\n` +
-           `I. PHYSICAL SAFETY & ENVIRONMENT\nDocumented threats: ${safety.length}\nCritical Incidents:\n${safety.map(e => `• [${e.exhibitNumber}] ${e.legalRelevance}`).join("\n")}\n\n` +
-           `II. COOPERATION & ACCESS\nTotal Obstruction Events: ${obs.length}\nSummary: Parental alienation and communication interference detected in s.17(d) assessment.\n\n` +
-           `III. INTEGRITY & PERJURY RISK\nFlagged Contradictions: ${perjury.length}\nThese exhibits directly challenge claims of consistent safety protocol adherence.`;
-  };
+const StrategyCards = ({ exhibits }: { exhibits: Exhibit[] }) => {
+  const highPriority = exhibits.filter(e => e.priority >= 9);
+  
+  const strategies = [
+    { title: "Safety Pivot", icon: <Target className="text-rose-400" />, desc: "Focus on the Sept 2025 assault to override standard access guidelines.", status: highPriority.length > 0 ? 'READY' : 'DATA REQ' },
+    { title: "Integrity Attack", icon: <ShieldAlert className="text-amber-400" />, desc: "Use the Perjury Matrix to invalidate the Applicant's safety testimony.", status: exhibits.some(e => e.perjuryFlag) ? 'READY' : 'PENDING' },
+    { title: "s.17 Health Factor", icon: <Scale className="text-emerald-400" />, desc: "Leverage stable housing and clean tests to demonstrate superior care capacity.", status: 'ACTIVE' }
+  ];
 
   return (
-    <div className="p-5 bg-slate-900 rounded-2xl border border-blue-900/30 shadow-2xl h-full flex flex-col">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-blue-400 text-[11px] font-black uppercase tracking-[0.2em]">AI Court Narrative Suite</h3>
-        <ShieldAlert className="w-4 h-4 text-blue-500/50" />
-      </div>
-      <div className="relative flex-1 group">
-        <textarea 
-          className="w-full h-full bg-black/40 text-slate-300 p-4 text-[11px] rounded-xl border border-slate-800 focus:outline-none focus:border-blue-500/30 leading-relaxed font-mono custom-scrollbar resize-none" 
-          readOnly 
-          value={generateBrief()} 
-        />
-        <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button className="bg-blue-600 text-white p-2 rounded-lg text-[10px] font-bold shadow-lg">COPY BRIEF</button>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {strategies.map((s, i) => (
+        <div key={i} className="bg-slate-800/50 border border-slate-700 p-5 rounded-[2rem] hover:border-blue-500/50 transition-all group">
+          <div className="flex justify-between items-start mb-3">
+            <div className="p-2 bg-slate-900 rounded-xl group-hover:scale-110 transition-transform">{s.icon}</div>
+            <span className={`text-[8px] font-black px-2 py-0.5 rounded ${s.status === 'READY' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-slate-700 text-slate-500'}`}>
+              {s.status}
+            </span>
+          </div>
+          <h4 className="text-white font-bold text-sm mb-1">{s.title}</h4>
+          <p className="text-[10px] text-slate-400 leading-relaxed font-medium">{s.desc}</p>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
@@ -88,19 +71,19 @@ export const WitnessPrep = ({ exhibits }: { exhibits: Exhibit[] }) => {
   const filtered = exhibits.filter(e => e.witnesses?.includes(witness));
 
   return (
-    <div className="p-5 bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl">
-      <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center gap-2">
-          <MessageSquare className="w-4 h-4 text-indigo-400" />
-          <h3 className="text-white text-sm font-bold">WITNESS PREP: {witness.toUpperCase()}</h3>
+    <div className="p-8 bg-slate-900 rounded-[2.5rem] border border-slate-800 shadow-2xl h-full flex flex-col">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <MessageSquare className="w-5 h-5 text-indigo-400" />
+          <h3 className="text-white font-black text-sm uppercase tracking-tighter">Witness Prep Suite</h3>
         </div>
-        <div className="flex bg-slate-800 rounded-lg p-0.5 border border-slate-700">
+        <div className="flex bg-slate-800 rounded-xl p-1 border border-slate-700">
           {['Jane', 'Emma', 'Self'].map(w => (
             <button
               key={w}
               onClick={() => setWitness(w)}
-              className={`px-3 py-1 rounded-md text-[10px] font-bold transition-all ${
-                witness === w ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+              className={`px-4 py-1.5 rounded-lg text-[10px] font-black transition-all ${
+                witness === w ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'
               }`}
             >
               {w}
@@ -109,28 +92,22 @@ export const WitnessPrep = ({ exhibits }: { exhibits: Exhibit[] }) => {
         </div>
       </div>
       
-      <div className="space-y-3 max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+      <div className="space-y-3 flex-1 overflow-y-auto pr-2 custom-scrollbar">
         {filtered.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-10 text-slate-600 gap-2">
-            <FileText className="w-8 h-8 opacity-20" />
-            <p className="text-[10px] uppercase font-black tracking-widest italic opacity-50">No Evidence Mapped</p>
+          <div className="h-full flex flex-col items-center justify-center text-slate-700 gap-4 opacity-50">
+            <FileText size={40} />
+            <p className="text-[10px] font-black uppercase tracking-widest">No Evidence Mapped to {witness}</p>
           </div>
         ) : (
           filtered.map(e => (
-            <div key={e.id} className="group p-3 bg-black/40 rounded-xl border border-slate-800/50 hover:border-indigo-500/30 transition-all cursor-default">
-              <div className="flex justify-between items-center mb-1.5">
-                <span className="font-mono text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
-                  {e.exhibitNumber}
+            <div key={e.id} className="p-4 bg-black/40 rounded-2xl border border-slate-800/50 hover:border-indigo-500/30 transition-all cursor-default">
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-mono text-[10px] font-black text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">
+                  #{e.exhibitNumber}
                 </span>
-                <span className="text-[10px] font-bold text-slate-500">{e.date}</span>
+                <span className="text-[10px] font-bold text-slate-600">{e.date}</span>
               </div>
-              <p className="text-[11px] text-slate-300 leading-snug group-hover:text-white transition-colors">
-                {e.description}
-              </p>
-              <div className="mt-2 pt-2 border-t border-slate-800/50 flex items-center justify-between">
-                <span className="text-[9px] text-slate-500 font-bold uppercase tracking-tighter">Relevance: s.17</span>
-                <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-indigo-400 transition-colors" />
-              </div>
+              <p className="text-xs text-slate-300 font-medium leading-relaxed">{e.description}</p>
             </div>
           ))
         )}
@@ -142,39 +119,57 @@ export const WitnessPrep = ({ exhibits }: { exhibits: Exhibit[] }) => {
 const CounselPrepRoom = ({ exhibits }: { exhibits: Exhibit[] }) => {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
-      <div className="bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl">
-        <header className="p-6 bg-slate-900/50 border-b border-slate-800 flex items-center justify-between">
+      <div className="bg-slate-950 rounded-[3rem] border border-slate-800 overflow-hidden shadow-2xl p-10">
+        <header className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-800 pb-10">
           <div>
-            <h1 className="text-xl font-black text-white tracking-tighter uppercase flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,1)]"></div>
-              EVIDENCE COMMAND: FDSJ-739-24
-            </h1>
-            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1 italic">
-              "Best Interests of the Child" • Automated Litigation Suite
+            <div className="flex items-center gap-3 text-blue-500 mb-2">
+              <Zap className="w-6 h-6 fill-blue-500" />
+              <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Litigation Strategy Room</h1>
+            </div>
+            <p className="text-slate-500 text-sm font-medium tracking-wide">
+              Case FDSJ-739-24 • Senior Counsel Intelligence Node
             </p>
           </div>
-          <div className="flex gap-2">
-            <div className="px-3 py-1 bg-slate-800 rounded-full border border-slate-700 text-[10px] text-slate-400 font-bold">
-              SYSTEM: ACTIVE
-            </div>
+          <div className="flex gap-4">
+             <div className="bg-slate-900 px-6 py-4 rounded-3xl border border-slate-800 text-center">
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Evidence Load</p>
+                <p className="text-xl font-black text-white">{exhibits.length}</p>
+             </div>
+             <div className="bg-blue-600 px-6 py-4 rounded-3xl text-center shadow-lg shadow-blue-600/20">
+                <p className="text-[10px] font-black text-blue-200 uppercase tracking-widest mb-1">Strategic Readiness</p>
+                <p className="text-xl font-black text-white">92%</p>
+             </div>
           </div>
         </header>
         
-        <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-6 bg-slate-950">
-          <div className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-8 space-y-8">
+            <StrategyCards exhibits={exhibits} />
             <ObstructionCalendar exhibits={exhibits} />
+          </div>
+          <div className="lg:col-span-4">
             <WitnessPrep exhibits={exhibits} />
           </div>
-          <div className="h-full">
-            <NarrativeGenerator exhibits={exhibits} />
+        </div>
+        
+        <div className="mt-12 p-8 bg-blue-600 rounded-[2.5rem] text-white flex flex-col md:flex-row items-center justify-between gap-6 group">
+          <div className="flex items-center gap-5">
+            <div className="bg-white/10 p-4 rounded-2xl group-hover:rotate-12 transition-transform">
+              <ShieldAlert className="w-10 h-10" />
+            </div>
+            <div>
+              <p className="text-2xl font-black tracking-tighter">Ready for Court Briefing</p>
+              <p className="text-blue-100 font-medium opacity-80">Synthesizing {exhibits.length} exhibits into s.17 Best Interest arguments.</p>
+            </div>
           </div>
+          <button className="bg-white text-blue-600 px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-blue-50 transition-all shadow-xl active:scale-95">
+            Export Legal Strategy
+          </button>
         </div>
       </div>
       
-      <div className="flex items-center gap-4 px-2">
-        <div className="flex-1 h-px bg-slate-800"></div>
-        <span className="text-[9px] text-slate-600 font-black uppercase tracking-[0.3em]">Secure Forensic Protocol v2.5.0</span>
-        <div className="flex-1 h-px bg-slate-800"></div>
+      <div className="text-center opacity-30 py-6">
+        <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.4em]">End Transmission • Secure Protocol FDSJ-739</span>
       </div>
     </div>
   );

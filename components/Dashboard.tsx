@@ -1,170 +1,173 @@
 
 import React from 'react';
-import { Exhibit, ExhibitCategory } from '../types';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { AlertCircle, FilePlus, Users, Scale, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
-import { CATEGORY_COLORS } from '../constants';
-import EvidenceCommand from './EvidenceCommand';
+import { Exhibit } from '../types';
+import { AreaChart, Area, ResponsiveContainer, CartesianGrid, Tooltip } from 'recharts';
+import { ShieldCheck, ShieldAlert, FilePlus, AlertCircle, Activity, ArrowRight, Zap, Target } from 'lucide-react';
 import BestInterestScorecard from './BestInterestScorecard';
+import EvidenceCommand from './EvidenceCommand';
 
 interface DashboardProps {
   exhibits: Exhibit[];
   onUploadClick: () => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ exhibits, onUploadClick }) => {
-  const categoryCounts = Object.values(ExhibitCategory).map(cat => ({
-    name: cat,
-    count: exhibits.filter(ex => ex.category === cat).length
-  }));
-
-  const stats = [
-    { label: 'Total Exhibits', value: exhibits.length, icon: FilePlus, color: 'text-blue-600' },
-    { label: 'Critical Safety Events', value: exhibits.filter(e => [ExhibitCategory.VIOLENCE, ExhibitCategory.SUBSTANCE].includes(e.category)).length, icon: AlertCircle, color: 'text-red-600' },
-    { label: 's.17 Arguments', value: exhibits.filter(e => e.bestInterestMapping).length, icon: Scale, color: 'text-emerald-600' },
-    { label: 'Integrity Flags', value: exhibits.filter(e => e.perjuryFlag).length, icon: ShieldCheck, color: 'text-rose-600' },
-  ];
-
-  const barColors: Record<string, string> = {
-    [ExhibitCategory.VIOLENCE]: '#ef4444',
-    [ExhibitCategory.SUBSTANCE]: '#a855f7',
-    [ExhibitCategory.CONTEMPT]: '#f59e0b',
-    [ExhibitCategory.FINANCIAL]: '#10b981',
-    [ExhibitCategory.PARENTING]: '#3b82f6',
-    [ExhibitCategory.INTEGRITY]: '#64748b',
-    [ExhibitCategory.MEDICAL]: '#06b6d4',
-    [ExhibitCategory.OBSTRUCTION]: '#f97316',
-    [ExhibitCategory.CUSTODY]: '#6366f1',
-    [ExhibitCategory.PERJURY]: '#f43f5e',
-  };
+const IntegrityGauge = ({ value }: { value: number }) => {
+  const radius = 80;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (value / 100) * circumference;
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500 pb-20">
-      <EvidenceCommand exhibits={exhibits} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 bg-gradient-to-br from-blue-700 to-blue-900 rounded-[3rem] p-10 text-white shadow-2xl relative overflow-hidden group">
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 opacity-10 pointer-events-none transition-transform group-hover:scale-110 duration-700">
-            <Scale size={320} />
-          </div>
-          <div className="relative z-10 flex flex-col h-full justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-blue-300 text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-                <Zap className="w-4 h-4" />
-                Sole Custody Juggernaut Strategy
-              </div>
-              <h3 className="text-4xl font-black tracking-tighter mb-6 leading-tight">Harper's Safety is<br/>Priority One</h3>
-              <p className="text-blue-100/80 text-lg max-w-xl font-medium leading-relaxed">
-                Case FDSJ-739-24 represents a critical intervention required to remove a child from a high-conflict, criminally unstable environment.
-              </p>
-            </div>
-            
-            <div className="mt-10 flex flex-wrap gap-4">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl px-5 py-3 text-xs font-bold border border-white/20 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                Assault Charge: SEPT 2025 (FILED)
-              </div>
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl px-5 py-3 text-xs font-bold border border-white/20 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                Drug Test: NEGATIVE (CRAIG)
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
-              <div className="flex items-center justify-between mb-4">
-                <stat.icon className={`w-6 h-6 ${stat.color} group-hover:scale-110 transition-transform`} />
-              </div>
-              <div>
-                <p className="text-4xl font-black text-slate-900 tracking-tighter">{stat.value}</p>
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">{stat.label}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="relative flex flex-col items-center justify-center group">
+      <svg className="w-64 h-64 -rotate-90">
+        <circle
+          cx="128"
+          cy="128"
+          r={radius}
+          stroke="currentColor"
+          strokeWidth="12"
+          fill="transparent"
+          className="text-slate-800"
+        />
+        <circle
+          cx="128"
+          cy="128"
+          r={radius}
+          stroke="currentColor"
+          strokeWidth="12"
+          strokeDasharray={circumference}
+          style={{ strokeDashoffset: offset }}
+          strokeLinecap="round"
+          fill="transparent"
+          className="text-blue-500 transition-all duration-1000 ease-out shadow-neon"
+        />
+      </svg>
+      <div className="absolute flex flex-col items-center justify-center text-center">
+        <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-1">Integrity</span>
+        <span className="text-5xl font-black text-white tracking-tighter">{value}%</span>
       </div>
+    </div>
+  );
+};
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <BestInterestScorecard exhibits={exhibits} />
+const Dashboard: React.FC<DashboardProps> = ({ exhibits, onUploadClick }) => {
+  const trendData = [
+    { time: '01', val: -20 }, { time: '02', val: -45 }, { time: '03', val: -30 },
+    { time: '04', val: -60 }, { time: '05', val: -40 }, { time: '06', val: -100 },
+    { time: '07', val: -70 }, { time: '08', val: -10 },
+  ];
 
-        <div className="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-xl flex flex-col">
-          <h3 className="font-black text-slate-900 text-xl mb-10 uppercase tracking-tighter flex items-center justify-between">
-            <span>Evidence Profile Distribution</span>
-            <span className="text-[10px] font-bold text-slate-400 bg-slate-50 px-4 py-1 rounded-full border border-slate-200 uppercase tracking-widest">NB-FSA s.17</span>
-          </h3>
-          <div className="h-[400px] w-full flex-1">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={categoryCounts} layout="vertical" margin={{ left: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#f1f5f9" />
-                <XAxis type="number" hide />
-                <YAxis 
-                  dataKey="name" 
-                  type="category" 
-                  tick={{ fontSize: 10, fontWeight: 900, fill: '#64748b' }} 
-                  width={110} 
-                  axisLine={false}
-                  tickLine={false}
-                />
-                <Tooltip 
-                  cursor={{ fill: 'transparent' }}
-                  contentStyle={{ borderRadius: '24px', border: 'none', boxShadow: '0 25px 50px -12px rgb(0 0 0 / 0.25)', padding: '16px' }}
-                />
-                <Bar dataKey="count" radius={[0, 12, 12, 0]} barSize={32}>
-                  {categoryCounts.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={barColors[entry.name] || '#94a3b8'} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+  const integrity = exhibits.length > 0 ? 100 : 0;
+  const perjuryCount = exhibits.filter(e => e.perjuryFlag).length;
+
+  return (
+    <div className="space-y-8 animate-in fade-in duration-700 pb-20">
+      
+      {/* PLACED Banner Hero */}
+      <div className="relative bg-slate-900 rounded-[3rem] p-12 overflow-hidden border border-white/5 shadow-2xl group">
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 opacity-10 group-hover:opacity-20 transition-all duration-1000">
+          <Activity size={400} className="text-blue-500" />
         </div>
-      </div>
-
-      <div className="space-y-6">
-        <div className="bg-slate-900 p-10 rounded-[3rem] text-white shadow-2xl flex flex-col justify-between">
-          <div>
-            <h3 className="font-black text-2xl mb-2 uppercase tracking-tighter italic">Forensic Operations</h3>
-            <p className="text-slate-400 text-sm mb-10 font-medium">Documenting the Applicant's criminal conduct for the court.</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <button 
-                onClick={onUploadClick}
-                className="flex items-center justify-between p-6 bg-blue-600 rounded-3xl hover:bg-blue-500 transition-all group shadow-xl shadow-blue-600/20 active:scale-95"
-              >
-                <div className="flex items-center gap-5">
-                  <div className="bg-white/10 p-3 rounded-xl">
-                    <FilePlus className="w-6 h-6" />
-                  </div>
-                  <div className="text-left">
-                    <p className="font-black text-lg">Ingest Evidence</p>
-                    <p className="text-[10px] text-blue-200 font-black uppercase tracking-widest">Process s.17 factors</p>
-                  </div>
-                </div>
-                <ArrowRight className="w-6 h-6 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
-              </button>
-
-              <button className="flex items-center justify-between p-6 bg-slate-800 rounded-3xl hover:bg-slate-700 transition-all group border border-slate-700 shadow-xl active:scale-95">
-                <div className="flex items-center gap-5">
-                  <div className="bg-white/10 p-3 rounded-xl">
-                    <Users className="w-6 h-6" />
-                  </div>
-                  <div className="text-left">
-                    <p className="font-black text-lg">Cross-Examine</p>
-                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Detect Perjury Risk</p>
-                  </div>
-                </div>
-                <ArrowRight className="w-6 h-6 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="bg-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white">System: Validated</div>
+              <div className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">FDSJ-739-24 // SECURE_CORE</div>
+            </div>
+            <h2 className="text-6xl font-black tracking-tighter text-white mb-6 leading-[0.9]">PLACED:<br/>The only system<br/>built that is system-proof.</h2>
+            <p className="text-slate-400 text-xl font-medium leading-relaxed mb-10 max-w-xl">
+              Engineered for Harper. Built to dismantle deception using immutable forensic verification.
+            </p>
+            <div className="flex gap-4">
+              <button onClick={onUploadClick} className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-blue-600/20 transition-all active:scale-95 flex items-center gap-3">
+                Ingest Core Evidence <ArrowRight size={16} />
               </button>
             </div>
           </div>
           
-          <div className="mt-12 pt-8 border-t border-slate-800 flex items-center justify-between text-[10px] font-black text-slate-600 uppercase tracking-[0.3em]">
-            <span>Security Level: Legal Grade</span>
-            <span>v4.0.0-JUGGERNAUT</span>
+          <div className="bg-slate-950/50 p-10 rounded-[3rem] border border-white/5 backdrop-blur-xl">
+             <IntegrityGauge value={integrity} />
+             <p className="text-[10px] font-black text-center text-slate-500 uppercase tracking-widest mt-4">Complete Case Audit Active</p>
           </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Evidence Record Chart */}
+        <div className="bg-slate-900 p-12 rounded-[3.5rem] border border-white/5 shadow-2xl">
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <h3 className="text-2xl font-black tracking-tighter text-white uppercase italic">Evidence // The Record</h3>
+              <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mt-1">225 Day Chronology Scan</p>
+            </div>
+            <div className="text-right">
+              <p className="text-3xl font-black text-blue-500 tracking-tighter">225 days</p>
+              <p className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Locked In</p>
+            </div>
+          </div>
+          <div className="h-64 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={trendData}>
+                <defs>
+                  <linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
+                <Area type="monotone" dataKey="val" stroke="#3b82f6" strokeWidth={4} fillOpacity={1} fill="url(#colorVal)" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="mt-8 flex justify-between items-center text-[9px] font-black text-slate-700 uppercase tracking-[0.4em]">
+            <span>System Proof Build v1.0.4</span>
+            <span>Block-ID: 0x2447...verified</span>
+          </div>
+        </div>
+
+        {/* Perjury Tracker Sonar */}
+        <div className="bg-slate-900 p-12 rounded-[3.5rem] border border-white/5 shadow-2xl relative overflow-hidden group">
+          <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+             <div className="w-80 h-80 border-2 border-rose-500 rounded-full animate-ping"></div>
+             <div className="absolute w-60 h-60 border border-rose-500/50 rounded-full"></div>
+             <div className="absolute w-40 h-40 border border-rose-500/30 rounded-full"></div>
+          </div>
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-12">
+              <h3 className="text-2xl font-black tracking-tighter text-white uppercase italic flex items-center gap-3">
+                <Target className="text-rose-500" />
+                Perjury Tracker
+              </h3>
+              <span className="text-[10px] font-black bg-rose-600 px-3 py-1 rounded-full text-white tracking-widest uppercase">Scanning</span>
+            </div>
+            
+            <div className="flex flex-col items-center justify-center py-6">
+              <div className="text-7xl font-black text-rose-500 tracking-tighter mb-2">{perjuryCount}</div>
+              <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Active Perjury Detections</p>
+            </div>
+
+            <div className="mt-12 flex justify-center gap-4">
+               <div className="bg-slate-950 px-6 py-3 rounded-2xl border border-white/5 flex flex-col items-center">
+                 <span className="text-[8px] font-black text-slate-600 uppercase mb-1">Locked In</span>
+                 <ShieldCheck className="text-blue-500 w-5 h-5" />
+               </div>
+               <div className="bg-slate-950 px-6 py-3 rounded-2xl border border-white/5 flex flex-col items-center">
+                 <span className="text-[8px] font-black text-slate-600 uppercase mb-1">Verified</span>
+                 <Zap className="text-amber-500 w-5 h-5" />
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <BestInterestScorecard exhibits={exhibits} />
+      <EvidenceCommand exhibits={exhibits} />
+
+      <div className="pt-20 pb-10 text-center">
+        <p className="text-slate-600 text-[11px] font-black uppercase tracking-[0.5em] mb-4 italic">Built for Harper. System-Proof for the World.</p>
+        <div className="flex justify-center gap-8 opacity-10">
+          <div className="w-16 h-px bg-white"></div>
+          <div className="w-16 h-px bg-white"></div>
+          <div className="w-16 h-px bg-white"></div>
         </div>
       </div>
     </div>

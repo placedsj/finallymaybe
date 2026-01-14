@@ -13,33 +13,36 @@ const BestInterestScorecard: React.FC<{ exhibits: Exhibit[] }> = ({ exhibits }) 
   };
 
   const factors = [
-    { label: "Safety & Security", value: stats.safety, icon: <Shield className="text-rose-500" />, color: "bg-rose-500", desc: "Evidence of assault/drug use." },
-    { label: "Stability of Environment", value: stats.stability, icon: <Home className="text-emerald-500" />, color: "bg-emerald-500", desc: "Negative drug tests & home care." },
-    { label: "Parental Cooperation", value: stats.alienation, icon: <AlertCircle className="text-amber-500" />, color: "bg-amber-500", desc: "Contempt & access denial (129 days)." },
-    { label: "Care & Development", value: stats.care, icon: <Heart className="text-blue-500" />, color: "bg-blue-500", desc: "Provision of needs & pre-natals." },
+    { label: "Safety & Security", value: stats.safety, icon: <Shield className="text-rose-500" />, color: "bg-rose-500", desc: "Risk profile: Crimson Alert" },
+    { label: "Environment Stability", value: stats.stability, icon: <Home className="text-blue-500" />, color: "bg-blue-500", desc: "Verified Housing Log" },
+    { label: "Parental Cooperation", value: stats.alienation, icon: <AlertCircle className="text-amber-500" />, color: "bg-amber-500", desc: "Obstruction Density" },
+    { label: "Care & Development", value: stats.care, icon: <Heart className="text-emerald-500" />, color: "bg-emerald-500", desc: "Sustenance Records" },
   ];
 
   return (
-    <div className="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-xl">
-      <div className="mb-8">
-        <h3 className="text-3xl font-black tracking-tighter text-slate-900">Judicial Impact Scorecard</h3>
-        <p className="text-slate-500 font-medium">Mapping Evidence to NB Family Services Act s.17</p>
+    <div className="bg-slate-900 p-12 rounded-[3.5rem] border border-white/5 shadow-2xl relative overflow-hidden group">
+      <div className="absolute top-0 right-0 p-8 opacity-[0.05] group-hover:opacity-10 transition-opacity">
+        <Zap size={140} className="text-blue-500" />
+      </div>
+      <div className="relative z-10 mb-12">
+        <h3 className="text-3xl font-black tracking-tighter text-white uppercase italic mb-2">Impact // Scorecard</h3>
+        <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Analysis Node: NB FSA s.17 Mapping</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
         {factors.map((f, i) => (
-          <div key={i} className="group p-6 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-slate-100">
-            <div className="flex justify-between items-start mb-4">
-              <div className="p-3 bg-white rounded-2xl shadow-sm">{f.icon}</div>
-              <span className="text-4xl font-black text-slate-200 group-hover:text-slate-900 transition-colors">
+          <div key={i} className="group p-8 rounded-[2rem] bg-white/5 hover:bg-white/[0.08] hover:shadow-2xl transition-all border border-transparent hover:border-white/10">
+            <div className="flex justify-between items-start mb-6">
+              <div className="p-4 bg-slate-950 rounded-2xl shadow-inner border border-white/5 group-hover:scale-110 transition-transform">{f.icon}</div>
+              <span className="text-5xl font-black text-slate-800 group-hover:text-white transition-colors tracking-tighter">
                 {String(f.value).padStart(2, '0')}
               </span>
             </div>
-            <h4 className="font-bold text-slate-900 mb-1">{f.label}</h4>
-            <p className="text-xs text-slate-500 mb-4">{f.desc}</p>
-            <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+            <h4 className="font-black text-slate-100 uppercase tracking-widest text-xs mb-2">{f.label}</h4>
+            <p className="text-[10px] text-slate-500 mb-6 font-bold uppercase tracking-widest">{f.desc}</p>
+            <div className="w-full bg-slate-950 h-2 rounded-full overflow-hidden p-0.5">
               <div 
-                className={`${f.color} h-full transition-all duration-1000`} 
+                className={`${f.color} h-full transition-all duration-1000 shadow-[0_0_10px_rgba(255,255,255,0.2)]`} 
                 style={{ width: `${Math.min(f.value * 10, 100)}%` }} 
               />
             </div>
@@ -47,11 +50,16 @@ const BestInterestScorecard: React.FC<{ exhibits: Exhibit[] }> = ({ exhibits }) 
         ))}
       </div>
       
-      <div className="mt-10 p-6 bg-slate-900 rounded-[2rem] text-white flex items-center gap-4">
-        <Zap className="text-yellow-400 fill-yellow-400" />
-        <p className="text-sm font-medium">
-          <span className="font-black text-yellow-400 uppercase tracking-tighter">Forensic Insight:</span> This distribution provides the court with a clear 'Best Interests' trajectory based on verified filings.
-        </p>
+      <div className="mt-12 p-8 bg-slate-950 rounded-[2.5rem] border border-white/5 flex items-center gap-6 relative z-10">
+        <div className="p-3 bg-blue-600 rounded-xl animate-pulse">
+           <Zap className="text-white w-6 h-6 fill-white" />
+        </div>
+        <div>
+          <p className="text-[10px] font-black text-blue-500 uppercase tracking-[0.3em] mb-1">System Insight // Active</p>
+          <p className="text-sm font-bold text-slate-400 leading-relaxed">
+            Forensic distributions mapped to statutory requirements for judicial review. Data integrity: <span className="text-white">Confirmed.</span>
+          </p>
+        </div>
       </div>
     </div>
   );

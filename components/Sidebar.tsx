@@ -1,9 +1,7 @@
 
 import React from 'react';
 import { 
-  Gavel, 
   Files, 
-  ShieldCheck, 
   LayoutDashboard, 
   BookOpen,
   Settings,
@@ -20,28 +18,35 @@ interface SidebarProps {
   setActiveTab: (tab: string) => void;
 }
 
+const PLACEDLogo = () => (
+  <div className="relative w-10 h-10 flex items-center justify-center">
+    <div className="absolute inset-0 bg-blue-600 rounded-lg rotate-3 shadow-lg"></div>
+    <div className="absolute inset-0 bg-blue-500 rounded-lg -rotate-3 border border-white/20 shadow-xl flex items-center justify-center">
+      <span className="text-white font-black text-xl italic">P</span>
+    </div>
+  </div>
+);
+
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'exhibits', label: 'Exhibit List', icon: Files },
-    { id: 'affidavit', label: 'Affidavit Forge', icon: PenTool },
-    { id: 'sniper', label: 'Truth Sniper', icon: Target },
-    { id: 'prep', label: 'Counsel Prep Room', icon: Briefcase },
-    { id: 'forensics', label: 'Legal Forensics', icon: ScanSearch },
-    { id: 'timeline', label: 'Case Timeline', icon: Clock },
-    { id: 'toc', label: 'Table of Contents', icon: BookOpen },
-    { id: 'prompts', label: 'AI Prompt Library', icon: HelpCircle },
+    { id: 'exhibits', label: 'The Record', icon: Files },
+    { id: 'affidavit', label: 'Forge Node', icon: PenTool },
+    { id: 'sniper', label: 'Perjury Sniper', icon: Target },
+    { id: 'prep', label: 'Strategy Room', icon: Briefcase },
+    { id: 'forensics', label: 'Forensic Lab', icon: ScanSearch },
+    { id: 'timeline', label: 'Chronology', icon: Clock },
+    { id: 'toc', label: 'Index Book', icon: BookOpen },
+    { id: 'prompts', label: 'Prompt Lab', icon: HelpCircle },
   ];
 
   return (
-    <div className="w-64 bg-slate-900 text-white h-screen fixed left-0 top-0 p-4 flex flex-col z-40">
-      <div className="flex items-center gap-3 mb-10 px-2">
-        <div className="bg-blue-600 p-2 rounded-lg shadow-lg shadow-blue-500/20">
-          <Gavel className="w-6 h-6" />
-        </div>
+    <div className="w-64 bg-slate-900 text-white h-screen fixed left-0 top-0 p-6 flex flex-col z-40 border-r border-white/5 shadow-2xl">
+      <div className="flex items-center gap-4 mb-12">
+        <PLACEDLogo />
         <div>
-          <h1 className="font-bold text-lg leading-tight text-white">Exhibit Pro</h1>
-          <p className="text-[10px] text-blue-400 font-black tracking-widest uppercase">FDSJ-739-2024</p>
+          <h1 className="font-black text-xl leading-none tracking-tighter text-white uppercase italic">PLACED //</h1>
+          <p className="text-[10px] text-blue-400 font-black tracking-[0.3em] uppercase mt-1">CORE SYSTEM</p>
         </div>
       </div>
 
@@ -50,22 +55,27 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
           <button
             key={item.id}
             onClick={() => setActiveTab(item.id)}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group ${
               activeTab === item.id 
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' 
-                : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/40 translate-x-1' 
+                : 'text-slate-500 hover:bg-white/5 hover:text-slate-200'
             }`}
           >
-            <item.icon className="w-5 h-5" />
-            <span className="font-medium text-sm">{item.label}</span>
+            <item.icon className={`w-5 h-5 transition-transform duration-500 ${activeTab === item.id ? 'scale-110' : 'group-hover:scale-110'}`} />
+            <span className="font-bold text-xs uppercase tracking-widest">{item.label}</span>
           </button>
         ))}
       </nav>
 
-      <div className="pt-6 border-t border-slate-800 mt-auto">
-        <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors group">
-          <Settings className="w-5 h-5 group-hover:rotate-45 transition-transform" />
-          <span className="font-medium text-sm">Settings</span>
+      <div className="pt-6 border-t border-white/5 mt-auto">
+        <button 
+          onClick={() => setActiveTab('params')}
+          className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${
+            activeTab === 'params' ? 'bg-slate-800 text-white' : 'text-slate-500 hover:text-slate-200'
+          }`}
+        >
+          <Settings className={`w-5 h-5 group-hover:rotate-90 transition-transform duration-500 ${activeTab === 'params' ? 'text-blue-500' : ''}`} />
+          <span className="font-bold text-xs uppercase tracking-widest">System Params</span>
         </button>
       </div>
     </div>
