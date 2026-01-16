@@ -1,5 +1,6 @@
 
-import { Dexie, type Table } from 'dexie';
+import Dexie from 'dexie';
+import type { Table } from 'dexie';
 import { Exhibit } from '../types';
 
 /**
@@ -12,7 +13,7 @@ export class LegalDatabase extends Dexie {
     super('LegalExhibitPro');
     
     // Define the database schema using the version method inherited from the Dexie base class.
-    // Using a named import for Dexie ensures the instance methods are correctly visible to TypeScript during inheritance.
+    // Fixed: Using default import for Dexie to ensure 'version' and other inherited members are correctly recognized by the TypeScript compiler.
     this.version(1).stores({
       exhibits: 'id, exhibitNumber, category, date, priority, perjuryFlag'
     });

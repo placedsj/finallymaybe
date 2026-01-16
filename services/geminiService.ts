@@ -41,7 +41,6 @@ const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 /**
  * Processes an uploaded file for forensic evidence extraction.
- * Uses gemini-3-flash-preview for efficient multimodal analysis.
  */
 export const processExhibitFile = async (
   base64Data: string, 
@@ -52,24 +51,20 @@ export const processExhibitFile = async (
   const ai = getAI();
   const model = 'gemini-3-flash-preview';
   
-  const systemInstruction = `Act as a Senior Litigator for Case FDSJ-739-24 (NB Family Court).
-  Analyze the provided evidence file for forensic relevance.
-  
-  STRATEGY: 
-  1. Map this evidence to the New Brunswick Family Services Act s.17 (Best Interests of the Child).
-  2. If this involves the Dec 9 incident or Sept 2025 Assault charges, flag as CRITICAL child endangerment.
-  3. Frame arguments to contrast the Applicant's criminal instability with Craig's documented safety and stable parenting.
-  4. LEGACY: In 'reflection', write a brief, honest note to Harper about why this moment matters for her future safety.
-  5. PERJURY: If this contradicts a claim of 'safety' or 'good parenting' by the Applicant, detail it in 'contradictionNote'.
-  
-  CATEGORIES: [VIOLENCE, SUBSTANCE, OBSTRUCTION, CUSTODY, FINANCIAL, MEDICAL, PERJURY, CONTEMPT, PARENTING, INTEGRITY].`;
+  const systemInstruction = `Act as a Senior Litigator for Case FDSJ-739-24.
+  Analyze evidence for forensic relevance. 
+  BE CONCISE. Use clinical legal language.
+  1. Map to NB FSA s.17.
+  2. Dec 9 or Sept 2025 incidents = CRITICAL.
+  3. Frame as Applicant criminal instability vs Craig's stability.
+  4. Perjury: Detail direct contradictions.`;
 
   const response = await ai.models.generateContent({
     model,
     contents: {
       parts: [
         { inlineData: { data: base64Data, mimeType } },
-        { text: `Analyze the file: ${fileName}. Use last exhibit number ${lastExhibitNum} as reference.` }
+        { text: `Analyze the file: ${fileName}. Reference last exhibit: ${lastExhibitNum}.` }
       ]
     },
     config: {
@@ -84,68 +79,41 @@ export const processExhibitFile = async (
 
 /**
  * Generates a formal affidavit draft.
- * Switched to gemini-3-flash-preview to avoid paid key requirement.
  */
 export const generateAffidavitDraft = async (exhibits: Exhibit[], focus: 'SAFETY' | 'CONTEMPT' | 'STABILITY' | 'GENERAL' = 'GENERAL'): Promise<string> => {
   const ai = getAI();
   const model = 'gemini-3-flash-preview';
   const context = exhibits.map(e => 
-    `EXHIBIT ${e.exhibitNumber} [${e.date}]: ${e.description}. 
-     Legal Relevance: ${e.legalRelevance}. 
-     Contradiction: ${e.contradictionNote || 'None'}. 
-     s.17 Factor: ${e.bestInterestMapping?.factor || 'General'}.
-     Priority: ${e.priority}/10.`
-  ).join('\n---\n');
-
-  const prompt = `Using the provided exhibits, draft a formal "Statement of Facts" for an Affidavit focusing on: ${focus}.
-  
-  EVIDENCE CONTEXT:
-  ${context}`;
+    `EXHIBIT ${e.exhibitNumber} [${e.date}]: ${e.description}. Relevance: ${e.legalRelevance}.`
+  ).join('\n');
 
   const response = await ai.models.generateContent({
     model,
-    contents: prompt,
+    contents: `Draft Statement of Facts focusing on: ${focus}.\n\nEVIDENCE:\n${context}`,
     config: {
-      systemInstruction: "You are a professional legal drafting engine for high-stakes custody litigation specialized in New Brunswick Family Court (Case FDSJ-739-24). Organize content by NB FSA s.17 factors. Use clinical, forensic language. Reference exhibits explicitly by number. Focus on child safety and the 129-day contempt period."
+      systemInstruction: "Senior legal drafting for NB Family Court. Clinical, forensic, explicitly reference exhibit numbers. Focus on child safety."
     }
   });
 
-  return response.text || "Unable to generate draft at this time.";
+  return response.text || "Drafting failed.";
 };
 
 /**
  * Performs a forensic perjury scan on an applicant's statement.
- * Switched to gemini-3-flash-preview.
  */
 export const analyzeForPerjury = async (applicantStatement: string, exhibits: Exhibit[]) => {
   const ai = getAI();
   const model = 'gemini-3-flash-preview';
   
   const context = exhibits
-    .map(ex => `EXHIBIT ${ex.exhibitNumber}: ${ex.description} (Date: ${ex.date}). Relevance: ${ex.legalRelevance}`)
+    .map(ex => `EXHIBIT ${ex.exhibitNumber}: ${ex.description} (${ex.date})`)
     .join('\n');
-
-  const prompt = `Analyze the following STATEMENT from the Applicant against the VERIFIED EXHIBITS provided.
-  
-  APPLICANT STATEMENT:
-  "${applicantStatement}"
-
-  VERIFIED EXHIBITS:
-  ${context}`;
 
   const response = await ai.models.generateContent({
     model,
-    contents: prompt,
+    contents: `Analyze Statement:\n"${applicantStatement}"\n\nAgainst Evidence:\n${context}`,
     config: {
-      systemInstruction: `Act as a Forensic Legal Analyst for Case FDSJ-739-24. 
-      TASK:
-      1. Identify every claim in the STATEMENT that is contradicted by an EXHIBIT.
-      2. For each contradiction, output:
-         - The exact "Claim" being made.
-         - The "Counter-Evidence" (Exhibit number and description).
-         - The "Perjury Risk Level" (High, Medium, Low).
-         - A "Judicial Note" on how this impacts the Applicant's credibility regarding Harper's safety.
-      3. Use clear, objective, and clinical language. Use Markdown for formatting.`
+      systemInstruction: "Forensic Perjury Analyst. Identify direct contradictions. Be blunt. Use bullet points for: Claim, Counter-Evidence, Risk Level."
     }
   });
   
@@ -154,27 +122,16 @@ export const analyzeForPerjury = async (applicantStatement: string, exhibits: Ex
 
 /**
  * Analyzes raw text for legal forensics.
- * Switched to gemini-3-flash-preview.
  */
 export const analyzeLegalForensics = async (text: string): Promise<Partial<Exhibit>[]> => {
   const ai = getAI();
   const model = 'gemini-3-flash-preview';
   
-  const systemInstruction = `Act as a Senior Legal Forensics Expert for Case FDSJ-739-24 (New Brunswick).
-  Analyze the provided text for "weaponized transparency" and incident extraction.
-  
-  FOR EACH INCIDENT:
-  1. Map to s.17 Factors: [Safety, Emotional Ties, Stability, Child's Views, Care Capacity].
-  2. Draft specific legal arguments for a New Brunswick Judge.
-  3. Detail any perjury risks in 'contradictionNote'.
-  
-  Return output as a JSON array of objects.`;
-
   const response = await ai.models.generateContent({
     model,
-    contents: `TEXT TO ANALYZE:\n${text}`,
+    contents: `EXTRACT INCIDENTS:\n${text}`,
     config: {
-      systemInstruction,
+      systemInstruction: "Senior Legal Forensics Expert. Extract incidents as JSON objects. Map to s.17 factors. Frame for judicial review.",
       responseMimeType: "application/json",
       responseSchema: FORENSIC_LIST_SCHEMA
     }
@@ -185,15 +142,20 @@ export const analyzeLegalForensics = async (text: string): Promise<Partial<Exhib
 
 /**
  * Real-time legal consultation with context.
- * Switched to gemini-3-flash-preview.
+ * REFINED: Enforcing 2-sentence maximum for tactical brevity.
  */
 export const chatWithGemini = async (message: string, exhibitsContext: string) => {
   const ai = getAI();
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: `Exhibits Context: ${exhibitsContext}\n\nClient Query: ${message}`,
+    contents: `Exhibits Context: ${exhibitsContext}\n\nUser Question: ${message}`,
     config: {
-      systemInstruction: "You are 'Pro-Counsel', a senior legal AI advisor for Case FDSJ-739-2024. Your mission is to provide arguments for Sole Custody based on Harper's safety and the Applicant's criminal conduct (NB FSA s.17)."
+      systemInstruction: `You are 'Pro-Counsel' for Case FDSJ-739-2024. 
+      VOICE: Tactical, high-intelligence litigation commander.
+      STRICT RULE: MAX 2 SENTENCES PER RESPONSE. 
+      NO FLUFF. No polite greetings. No generic advice.
+      Output must be purely strategic, legal strikes targeting Sole Custody and s.17 Best Interests.
+      Speak in short, punchy, forensic commands.`
     }
   });
   return response.text;
@@ -206,14 +168,13 @@ export const fastEvidenceSummary = async (description: string, relevance: string
   const ai = getAI();
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: `Summarize impact into a 5-word 'Judicial Impact' statement. Description: ${description}. Relevance: ${relevance}`,
+    contents: `Judicial Impact (5 words max): ${description} | ${relevance}`,
   });
   return response.text;
 };
 
 /**
  * Deep vision analysis for forensic image evidence.
- * Switched to gemini-2.5-flash-image to avoid paid key requirement.
  */
 export const deepImageAnalysis = async (base64Data: string, mimeType: string) => {
   const ai = getAI();
@@ -223,7 +184,7 @@ export const deepImageAnalysis = async (base64Data: string, mimeType: string) =>
     contents: {
       parts: [
         { inlineData: { data: base64Data, mimeType } },
-        { text: "Perform a deep legal forensic analysis of this image. Identify persons, safety hazards (weapons, threats), emotional state indicators, and s.17 violations (child endangerment). Explain how this protects the child." }
+        { text: "Forensic image scan. Person detection, hazard mapping, s.17 violations. Be concise." }
       ]
     }
   });

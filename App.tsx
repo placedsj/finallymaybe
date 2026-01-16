@@ -10,6 +10,7 @@ import AffidavitForge from './components/AffidavitForge';
 import TruthSniper from './components/TruthSniper';
 import LegalChatbot from './components/LegalChatbot';
 import SystemParams from './components/SystemParams';
+import ExhibitBook from './components/ExhibitBook';
 import { Exhibit, ExhibitCategory, Incident } from './types';
 import { CASE_DEFAULTS, CATEGORY_COLORS } from './constants';
 import { processExhibitFile, deepImageAnalysis } from './services/geminiService';
@@ -26,7 +27,10 @@ import {
   Zap,
   Heart,
   Scale,
-  Book
+  Book,
+  CheckCircle,
+  AlertCircle,
+  FileText
 } from 'lucide-react';
 
 const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB limit for single file processing
@@ -38,6 +42,8 @@ const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterCategory, setFilterCategory] = useState<ExhibitCategory | 'all'>('all');
   const [legacyMode, setLegacyMode] = useState(false);
+  const [toast, setToast] = useState<{message: string, type: 'success' | 'error'} | null>(null);
+  const [committedAffidavit, setCommittedAffidavit] = useState<string>('');
   
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -53,6 +59,11 @@ const App: React.FC = () => {
     loadData();
   }, []);
 
+  const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 4000);
+  };
+
   const generateHash = async (file: File): Promise<string> => {
     const buffer = await file.arrayBuffer();
     const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
@@ -65,27 +76,28 @@ const App: React.FC = () => {
     if (!files || files.length === 0) return;
 
     setIsProcessing(true);
-    const processedExhibits: Exhibit[] = [];
+    const newExhibits: Exhibit[] = [];
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       if (file.size > MAX_FILE_SIZE) {
-        alert(`File ${file.name} exceeds 25MB limit. Please compress for AI forensic processing.`);
+        showToast(`File ${file.name} exceeds 25MB limit.`, 'error');
         continue;
       }
 
       const fileHash = await generateHash(file);
       const reader = new FileReader();
 
-      const processFile = new Promise<void>((resolve) => {
+      await new Promise<void>((resolve) => {
         reader.onload = async (event) => {
           const base64 = (event.target?.result as string).split(',')[1];
           try {
+            const currentCount = exhibits.length + newExhibits.length;
             const extracted = await processExhibitFile(
               base64, 
               file.type, 
               file.name, 
-              exhibits.length + processedExhibits.length
+              currentCount
             );
 
             let deepCaption = extracted.caption || '';
@@ -100,7 +112,7 @@ const App: React.FC = () => {
             
             const exhibit: Exhibit = {
               id: Math.random().toString(36).substr(2, 9),
-              exhibitNumber: extracted.exhibitNumber || `${exhibits.length + processedExhibits.length + 1}A`,
+              exhibitNumber: extracted.exhibitNumber || `${currentCount + 1}A`,
               date: extracted.date || new Date().toLocaleDateString(),
               category: (extracted.category as ExhibitCategory) || ExhibitCategory.INTEGRITY,
               description: extracted.description || file.name,
@@ -116,23 +128,25 @@ const App: React.FC = () => {
               priority: extracted.priority || 5,
               witnesses: extracted.witnesses || [],
               status: 'processed',
-              perjuryFlag: extracted.perjuryFlag
+              perjuryFlag: extracted.perjuryFlag,
+              bestInterestMapping: extracted.bestInterestMapping
             };
             
             await db.exhibits.add(exhibit);
-            processedExhibits.push(exhibit);
+            newExhibits.push(exhibit);
+            
+            showToast(`Exhibit ${exhibit.exhibitNumber} Secured: ${file.name}`);
           } catch (error: any) {
             console.error('Error processing file:', error);
+            showToast(`Core processing failed for ${file.name}`, 'error');
           }
           resolve();
         };
+        reader.readAsDataURL(file);
       });
-      
-      reader.readAsDataURL(file);
-      await processFile;
     }
 
-    setExhibits(prev => [...prev, ...processedExhibits]);
+    setExhibits(prev => [...prev, ...newExhibits]);
     setIsProcessing(false);
     if (fileInputRef.current) fileInputRef.current.value = '';
     setActiveTab('exhibits');
@@ -157,19 +171,14 @@ const App: React.FC = () => {
     };
     await db.exhibits.add(newExhibit);
     setExhibits(prev => [...prev, newExhibit]);
+    showToast(`Incident converted to Exhibit ${newExhibit.exhibitNumber}`);
   };
 
   const deleteExhibit = async (id: string) => {
     if (confirm('Are you sure you want to delete this exhibit?')) {
       await db.exhibits.delete(id);
       setExhibits(prev => prev.filter(ex => ex.id !== id));
-    }
-  };
-
-  const clearAllEvidence = async () => {
-    if (confirm('WARNING: This will delete ALL evidence from this case and cannot be undone. Proceed?')) {
-      await db.exhibits.clear();
-      setExhibits([]);
+      showToast('Exhibit purged from record.');
     }
   };
 
@@ -271,54 +280,15 @@ const App: React.FC = () => {
         );
 
       case 'prep': return <CounselPrepRoom exhibits={exhibits} />;
-      case 'affidavit': return <AffidavitForge exhibits={exhibits} />;
+      case 'affidavit': return <AffidavitForge exhibits={exhibits} onCommit={(draft) => {
+        setCommittedAffidavit(draft);
+        showToast("Affidavit Secured to Exhibit Book.");
+      }} />;
       case 'sniper': return <TruthSniper exhibits={exhibits} />;
       case 'forensics': return <ForensicsAnalysis onConvertToExhibit={handleForensicToExhibit} />;
       case 'timeline': return <CaseTimeline exhibits={exhibits} />;
       case 'params': return <SystemParams />;
-      case 'toc':
-        return (
-          <div className="bg-slate-900 rounded-[4rem] border border-white/5 shadow-2xl p-16 legal-font max-w-4xl mx-auto min-h-[900px] relative overflow-hidden">
-             <div className="absolute top-0 left-0 w-full h-3 bg-blue-600"></div>
-            <div className="text-center mb-16 border-b border-white/5 pb-16">
-              <h2 className="text-4xl font-black uppercase tracking-[0.4em] mb-6 text-white italic">Exhibit Index Report</h2>
-              <div className="inline-flex flex-col gap-2">
-                <p className="text-[10px] font-black uppercase text-slate-500 tracking-widest">PLACED CORE CERTIFIED FILE</p>
-                <p className="text-xs font-bold text-slate-400">{CASE_DEFAULTS.court}</p>
-                <p className="text-xl font-black text-blue-500">Ref: {CASE_DEFAULTS.caseNumber}</p>
-              </div>
-            </div>
-            
-            <div className="space-y-16">
-              {Object.keys(CATEGORY_COLORS).map(cat => {
-                const catExhibits = exhibits.filter(ex => ex.category === cat);
-                if (catExhibits.length === 0) return null;
-                return (
-                  <div key={cat} className="animate-in fade-in slide-in-from-left-4 duration-500">
-                    <h3 className="text-2xl font-black border-b border-white/5 mb-8 pb-3 uppercase tracking-tighter flex justify-between items-center">
-                      <span className="text-white">{cat} EVIDENCE</span>
-                      <span className="text-[10px] text-slate-500 font-black tracking-[0.4em]">SECURE_BLOCK</span>
-                    </h3>
-                    <div className="space-y-6">
-                      {catExhibits.map((ex, idx) => (
-                        <div key={ex.id} className="flex justify-between items-baseline group p-3 rounded-2xl hover:bg-white/5 transition-all">
-                          <div className="flex-1 flex items-baseline">
-                            <span className="font-mono text-xs font-black w-24 text-blue-500 bg-blue-500/10 px-3 py-1 rounded-lg border border-blue-500/20">#{ex.exhibitNumber}</span>
-                            <span className="text-lg font-bold text-slate-300 ml-6">{ex.description}</span>
-                            <div className="flex-1 mx-6 border-b border-white/5 border-dotted opacity-20"></div>
-                          </div>
-                          <div className="text-right">
-                             <span className="text-sm font-black text-slate-100">PAGE {1 + idx * 3}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
+      case 'toc': return <ExhibitBook exhibits={exhibits} affidavitDraft={committedAffidavit} />;
 
       case 'prompts':
         return (
@@ -345,11 +315,11 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex relative overflow-hidden">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       
       <main className="ml-64 flex-1 p-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 to-slate-950">
-        <header className="flex items-center justify-between mb-12">
+        <header className="flex items-center justify-between mb-12 print:hidden">
           <div className="flex items-center gap-6">
             <div>
               <h1 className="text-4xl font-black text-white tracking-tighter uppercase italic">
@@ -412,9 +382,22 @@ const App: React.FC = () => {
             </div>
           </div>
         )}
+
+        {toast && (
+          <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[60] animate-in slide-in-from-bottom-10 fade-in duration-500 print:hidden">
+            <div className={`flex items-center gap-4 px-8 py-5 rounded-[2rem] shadow-2xl border-2 backdrop-blur-xl ${
+              toast.type === 'success' ? 'bg-emerald-950/80 border-emerald-500/30 text-emerald-100' : 'bg-rose-950/80 border-rose-500/30 text-rose-100'
+            }`}>
+              {toast.type === 'success' ? <CheckCircle className="text-emerald-500" /> : <AlertCircle className="text-rose-500" />}
+              <span className="font-black text-xs uppercase tracking-widest">{toast.message}</span>
+            </div>
+          </div>
+        )}
       </main>
 
-      <LegalChatbot exhibits={exhibits} />
+      <div className="print:hidden">
+        <LegalChatbot exhibits={exhibits} />
+      </div>
       
       <style>{`
         .shadow-neon { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }

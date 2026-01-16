@@ -13,16 +13,18 @@ import {
   Hash,
   Download,
   Zap,
-  ShieldAlert
+  ShieldAlert,
+  Save
 } from 'lucide-react';
 
 interface AffidavitForgeProps {
   exhibits: Exhibit[];
+  onCommit?: (draft: string) => void;
 }
 
 type DraftFocus = 'SAFETY' | 'CONTEMPT' | 'STABILITY' | 'GENERAL';
 
-const AffidavitForge: React.FC<AffidavitForgeProps> = ({ exhibits }) => {
+const AffidavitForge: React.FC<AffidavitForgeProps> = ({ exhibits, onCommit }) => {
   const [draft, setDraft] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [activeFocus, setActiveFocus] = useState<DraftFocus>('GENERAL');
@@ -41,76 +43,72 @@ const AffidavitForge: React.FC<AffidavitForgeProps> = ({ exhibits }) => {
   };
 
   const contradictions = exhibits.filter(e => e.contradictionNote || e.perjuryFlag);
-  const criticalExhibits = exhibits.filter(e => e.priority >= 8);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(draft);
-    alert('Affidavit draft copied to clipboard.');
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      {/* Strategic Controls & Matrix - Left 4 Columns */}
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
+      {/* Strategic Controls - Left 4 Columns */}
       <div className="lg:col-span-4 space-y-6">
-        <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+        <div className="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl relative overflow-hidden group border border-white/10">
           <div className="relative z-10">
-            <h3 className="text-xl font-black mb-6 flex items-center gap-3">
-              <Zap className="text-blue-400 w-6 h-6" />
+            <h3 className="text-2xl font-black mb-6 flex items-center gap-4 uppercase italic tracking-tighter">
+              <Zap className="text-blue-500 w-7 h-7" />
               Argument Forge
             </h3>
-            <p className="text-slate-400 text-sm mb-8 font-medium">Select a strategic focus to synthesize evidence into a formal Statement of Facts.</p>
+            <p className="text-slate-400 text-sm mb-10 font-medium leading-relaxed">Select a strategic focus to synthesize evidence into a formal Statement of Facts.</p>
             
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-1 gap-4">
               {(['GENERAL', 'SAFETY', 'CONTEMPT', 'STABILITY'] as DraftFocus[]).map((focus) => (
                 <button
                   key={focus}
                   onClick={() => handleGenerate(focus)}
                   disabled={isGenerating || exhibits.length === 0}
-                  className={`w-full p-4 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-between transition-all group/btn ${
+                  className={`w-full p-6 rounded-2xl font-black text-xs uppercase tracking-[0.3em] flex items-center justify-between transition-all group/btn border-2 ${
                     activeFocus === focus && draft
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20'
-                    : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
+                    ? 'bg-blue-600 border-blue-500 text-white shadow-xl shadow-blue-600/30'
+                    : 'bg-slate-950 border-white/5 text-slate-500 hover:bg-slate-800 hover:text-white hover:border-blue-500/50'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <PenTool size={16} />
-                    Forge {focus}
+                  <div className="flex items-center gap-4">
+                    <PenTool size={18} />
+                    {focus}
                   </div>
-                  <Sparkles size={14} className="opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                  <Sparkles size={16} className="opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                 </button>
               ))}
             </div>
           </div>
-          <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
-            <ShieldCheck size={160} />
+          <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+            <ShieldCheck size={200} />
           </div>
         </div>
 
-        {/* Contradiction Matrix */}
-        <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm overflow-hidden">
-          <h3 className="text-lg font-black text-slate-900 mb-6 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <ShieldAlert className="text-rose-500 w-5 h-5" />
+        {/* Perjury Matrix */}
+        <div className="bg-slate-900 p-10 rounded-[3rem] border border-white/10 shadow-2xl">
+          <h3 className="text-xl font-black text-white mb-8 flex items-center justify-between uppercase italic tracking-tighter">
+            <div className="flex items-center gap-3">
+              <ShieldAlert className="text-red-500 w-6 h-6" />
               Perjury Matrix
             </div>
-            <span className="text-[10px] bg-rose-50 text-rose-600 px-2 py-0.5 rounded-full border border-rose-100 font-black">
+            <span className="text-[10px] bg-red-600 text-white px-3 py-1 rounded-full font-black tracking-widest">
               {contradictions.length} FLAGS
             </span>
           </h3>
           <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
             {contradictions.length === 0 ? (
-              <div className="text-center py-10 text-slate-300">
-                <AlertCircle className="mx-auto mb-2 opacity-20" size={32} />
-                <p className="text-xs font-bold uppercase tracking-widest">No perjury data</p>
+              <div className="text-center py-16 text-slate-700">
+                <AlertCircle className="mx-auto mb-4 opacity-20" size={48} />
+                <p className="text-xs font-black uppercase tracking-[0.4em]">No perjury data</p>
               </div>
             ) : (
               contradictions.map(ex => (
-                <div key={ex.id} className="p-4 bg-rose-50/50 rounded-2xl border border-rose-100 group hover:bg-rose-50 transition-colors">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-[9px] font-black text-rose-500 uppercase tracking-widest">Exhibit #{ex.exhibitNumber}</span>
-                  </div>
-                  <p className="text-xs font-bold text-slate-900 mb-2 line-clamp-2">{ex.description}</p>
-                  <p className="text-[10px] text-rose-700 italic border-l-2 border-rose-200 pl-3 leading-relaxed">
+                <div key={ex.id} className="p-6 bg-black rounded-3xl border border-white/5 group hover:border-red-500/30 transition-all">
+                  <span className="text-[10px] font-black text-red-500 uppercase tracking-widest block mb-2">Exhibit #{ex.exhibitNumber}</span>
+                  <p className="text-sm font-black text-slate-100 mb-3 leading-tight group-hover:text-white">{ex.description}</p>
+                  <p className="text-xs text-slate-400 italic border-l-2 border-red-500/50 pl-5 leading-relaxed">
                     "{ex.contradictionNote || 'Direct safety protocol violation documented.'}"
                   </p>
                 </div>
@@ -118,44 +116,35 @@ const AffidavitForge: React.FC<AffidavitForgeProps> = ({ exhibits }) => {
             )}
           </div>
         </div>
-
-        {/* Digital Integrity Strip */}
-        <div className="bg-white p-6 rounded-[2.5rem] border border-slate-200 shadow-sm">
-          <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-            <Hash size={12} />
-            Forensic Integrity Log
-          </h4>
-          <div className="space-y-1.5">
-            {exhibits.slice(0, 4).map(ex => (
-              <div key={ex.id} className="flex justify-between items-center text-[9px] font-mono group">
-                <span className="text-slate-400 group-hover:text-blue-600 transition-colors">Ex {ex.exhibitNumber}:</span>
-                <span className="text-slate-300 group-hover:text-slate-500 truncate ml-4 w-32 text-right">
-                  {ex.fileHash ? ex.fileHash.substring(0, 16) + '...' : 'VERIFYING'}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Document Drafting View - Right 8 Columns */}
-      <div className="lg:col-span-8 bg-white rounded-[3rem] border border-slate-200 shadow-2xl overflow-hidden flex flex-col min-h-[800px] relative">
+      <div className="lg:col-span-8 bg-slate-900 rounded-[3.5rem] border border-white/10 shadow-2xl overflow-hidden flex flex-col min-h-[900px] relative">
         {/* Document Toolbar */}
-        <div className="p-6 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between sticky top-0 z-20 backdrop-blur-md">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-600 border border-slate-100">
-              <FileText size={24} />
+        <div className="p-8 border-b border-white/10 bg-slate-950/50 flex items-center justify-between sticky top-0 z-20 backdrop-blur-xl">
+          <div className="flex items-center gap-5">
+            <div className="w-14 h-14 bg-blue-600/10 rounded-2xl border border-blue-500/20 flex items-center justify-center text-blue-500 shadow-inner">
+              <FileText size={28} />
             </div>
             <div>
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] leading-none mb-1.5">Drafting Suite v4.0</p>
-              <h4 className="font-black text-slate-900 text-lg leading-none">Affidavit Section: {activeFocus}</h4>
+              <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-1">Drafting Suite v4.0</p>
+              <h4 className="font-black text-white text-xl uppercase tracking-tighter italic">Affidavit: {activeFocus}</h4>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
+            {onCommit && draft && (
+              <button 
+                onClick={() => onCommit(draft)}
+                className="flex items-center gap-3 px-6 py-3 bg-emerald-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-emerald-500 transition-all shadow-lg active:scale-95"
+              >
+                <Save size={16} />
+                Commit to Record
+              </button>
+            )}
             <button 
               onClick={copyToClipboard}
               disabled={!draft}
-              className="p-3 text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-all rounded-xl disabled:opacity-30" 
+              className="p-4 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-all rounded-2xl disabled:opacity-20 shadow-lg" 
               title="Copy to Clipboard"
             >
               <Copy size={20} />
@@ -163,7 +152,7 @@ const AffidavitForge: React.FC<AffidavitForgeProps> = ({ exhibits }) => {
             <button 
               onClick={() => window.print()}
               disabled={!draft}
-              className="p-3 text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-all rounded-xl disabled:opacity-30" 
+              className="p-4 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-all rounded-2xl disabled:opacity-20 shadow-lg" 
               title="Print Draft"
             >
               <Printer size={20} />
@@ -171,63 +160,65 @@ const AffidavitForge: React.FC<AffidavitForgeProps> = ({ exhibits }) => {
           </div>
         </div>
 
-        {/* The Paper Component */}
-        <div className="flex-1 p-16 legal-font overflow-y-auto custom-scrollbar bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] selection:bg-blue-100">
+        {/* The Drafting Floor */}
+        <div className="flex-1 p-16 legal-font overflow-y-auto custom-scrollbar bg-black/30 selection:bg-blue-600/50">
           {!draft && !isGenerating ? (
-            <div className="h-full flex flex-col items-center justify-center text-slate-300 opacity-50 text-center max-w-sm mx-auto">
-              <div className="w-24 h-24 rounded-full bg-slate-50 flex items-center justify-center mb-6">
-                <PenTool size={48} className="text-slate-200" />
+            <div className="h-full flex flex-col items-center justify-center text-center max-w-sm mx-auto space-y-8">
+              <div className="w-28 h-28 rounded-[2.5rem] bg-slate-950 flex items-center justify-center border border-white/10 shadow-inner">
+                <PenTool size={48} className="text-slate-800" />
               </div>
-              <p className="text-base font-black uppercase tracking-[0.2em] text-slate-400">Chamber is Empty</p>
-              <p className="text-sm mt-3 italic leading-relaxed">
-                Select a strategic focus from the Forge panel to synthesize your forensic exhibits into a formal court narrative.
-              </p>
+              <div className="space-y-4">
+                <p className="text-xl font-black uppercase tracking-[0.3em] text-slate-500 italic">Chamber is Empty</p>
+                <p className="text-sm text-slate-600 font-medium leading-relaxed italic">
+                  Select a strategic focus to synthesize your forensic record into a clinical judicial narrative.
+                </p>
+              </div>
             </div>
           ) : isGenerating ? (
-            <div className="space-y-8 py-10">
-              <div className="flex items-center gap-4 mb-10">
-                <Sparkles className="w-6 h-6 text-blue-500 animate-spin" />
-                <span className="text-xs font-black uppercase tracking-widest text-blue-600">Senior AI Litigator Drafting...</span>
+            <div className="space-y-12 py-10">
+              <div className="flex items-center gap-6 mb-16">
+                <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                <span className="text-sm font-black uppercase tracking-[0.4em] text-blue-500 animate-pulse">Engaging AI Litigator // Synthesizing Node Data</span>
               </div>
-              <div className="h-4 bg-slate-100 rounded-full w-3/4 animate-pulse"></div>
-              <div className="h-4 bg-slate-100 rounded-full w-full animate-pulse"></div>
-              <div className="h-4 bg-slate-100 rounded-full w-5/6 animate-pulse"></div>
-              <div className="h-4 bg-slate-100 rounded-full w-full animate-pulse"></div>
-              <div className="h-4 bg-slate-100 rounded-full w-4/6 animate-pulse"></div>
-              <div className="h-4 bg-slate-100 rounded-full w-full animate-pulse"></div>
-              <div className="h-4 bg-slate-100 rounded-full w-3/4 animate-pulse"></div>
+              <div className="space-y-6">
+                <div className="h-5 bg-slate-800 rounded-full w-3/4 animate-pulse"></div>
+                <div className="h-5 bg-slate-800 rounded-full w-full animate-pulse"></div>
+                <div className="h-5 bg-slate-800 rounded-full w-5/6 animate-pulse"></div>
+                <div className="h-5 bg-slate-800 rounded-full w-full animate-pulse"></div>
+                <div className="h-5 bg-slate-800 rounded-full w-4/6 animate-pulse"></div>
+              </div>
             </div>
           ) : (
             <div className="animate-in fade-in duration-1000">
-              <div className="prose prose-slate max-w-none whitespace-pre-wrap leading-[1.8] text-slate-900 text-lg">
+              <div className="prose prose-invert max-w-none whitespace-pre-wrap leading-[2] text-slate-100 text-lg font-medium selection:bg-blue-600/30">
                 {draft}
               </div>
               
-              {/* Chain of Custody Addendum */}
-              <div className="mt-20 pt-10 border-t-4 border-slate-900">
-                <div className="flex items-center gap-3 mb-6">
-                  <ShieldCheck className="text-slate-900 w-5 h-5" />
-                  <h5 className="font-black uppercase tracking-[0.3em] text-xs">Annex A: Digital Forensic Verification Log</h5>
+              {/* Addendum */}
+              <div className="mt-24 pt-12 border-t-4 border-white/10">
+                <div className="flex items-center gap-4 mb-8">
+                  <ShieldCheck className="text-blue-500 w-6 h-6" />
+                  <h5 className="font-black uppercase tracking-[0.5em] text-xs text-white">Forensic Verification Addendum</h5>
                 </div>
-                <p className="text-[11px] text-slate-500 mb-6 font-sans uppercase font-black tracking-tight leading-relaxed max-w-xl">
-                  Verification of raw data integrity. The following exhibits have been processed through cryptographically secured hashing (SHA-256) to ensure chain-of-custody compliance.
+                <p className="text-xs text-slate-500 mb-10 font-bold uppercase tracking-widest leading-relaxed max-w-2xl">
+                  Digital integrity log: All cited exhibits have been processed through SHA-256 verification and secured via the PLACED // CORE vault protocol.
                 </p>
-                <div className="space-y-2 font-mono text-[10px]">
+                <div className="space-y-3 font-mono text-[11px]">
                   {exhibits.map(ex => (
-                    <div key={ex.id} className="flex justify-between items-center py-1.5 border-b border-slate-100 group">
-                      <span className="text-slate-900 font-bold">EXHIBIT {ex.exhibitNumber} [VERIFIED]</span>
-                      <span className="text-blue-600 bg-blue-50 px-2 rounded opacity-60 group-hover:opacity-100 transition-opacity">
+                    <div key={ex.id} className="flex justify-between items-center py-3 border-b border-white/5 group hover:bg-white/[0.02] px-4 rounded-xl transition-all">
+                      <span className="text-slate-200 font-black">EXHIBIT {ex.exhibitNumber} [SECURED]</span>
+                      <span className="text-blue-400 font-mono opacity-60 group-hover:opacity-100 transition-opacity">
                         {ex.fileHash || '0x_HASH_UNAVAILABLE_IN_PREVIEW'}
                       </span>
                     </div>
                   ))}
                 </div>
-                <div className="mt-10 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                     <div className="w-10 h-10 rounded bg-slate-100 border border-slate-200 flex items-center justify-center font-black text-slate-400 text-xs">QR</div>
-                     <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Digital Signature Secure</span>
+                <div className="mt-16 flex items-center justify-between border-t border-white/5 pt-10">
+                  <div className="flex items-center gap-4">
+                     <div className="w-12 h-12 rounded-xl bg-slate-950 border border-white/10 flex items-center justify-center font-black text-slate-600 text-xs">HASH</div>
+                     <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">Protocol: NB_FSA_v4.2_SECURE</span>
                   </div>
-                  <span className="text-[9px] font-black text-slate-300 uppercase italic">FDSJ-739-24 • FORENSIC_SECURE_V4</span>
+                  <span className="text-[9px] font-black text-slate-700 uppercase italic">SYSTEM REF: FDSJ-739-24</span>
                 </div>
               </div>
             </div>

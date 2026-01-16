@@ -44,79 +44,80 @@ const ExhibitList: React.FC<ExhibitListProps> = ({ exhibits, onDelete, onEdit })
 
   if (exhibits.length === 0) {
     return (
-      <div className="bg-white border-2 border-dashed border-slate-200 rounded-xl p-12 text-center">
-        <FileText className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-        <h3 className="text-lg font-semibold text-slate-600">No exhibits found</h3>
-        <p className="text-slate-400">Upload your first file or run forensic analysis to get started.</p>
+      <div className="bg-slate-900/50 border-2 border-dashed border-white/10 rounded-[3rem] p-24 text-center">
+        <FileText className="w-16 h-16 text-slate-600 mx-auto mb-6" />
+        <h3 className="text-2xl font-black text-slate-200 uppercase tracking-tighter italic">The record is void.</h3>
+        <p className="text-slate-400 font-medium mt-2">Awaiting forensic ingestion or analysis stream.</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {exhibits.map((ex) => (
-        <div key={ex.id} className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all group overflow-hidden">
+        <div key={ex.id} className="bg-slate-900 rounded-[2.5rem] border border-white/15 shadow-2xl hover:border-blue-500/40 transition-all group overflow-hidden">
           <div className="flex">
             {/* Priority Strip */}
-            <div className={`w-1.5 ${ex.priority >= 8 ? 'bg-red-500' : ex.priority >= 5 ? 'bg-amber-500' : 'bg-blue-500'}`}></div>
+            <div className={`w-3 ${ex.priority >= 8 ? 'bg-red-600 shadow-[0_0_20px_rgba(220,38,38,0.5)]' : ex.priority >= 5 ? 'bg-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.3)]' : 'bg-blue-600'}`}></div>
             
-            <div className="flex-1 p-5">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="font-bold text-slate-900 bg-slate-100 px-3 py-1 rounded-md border border-slate-200">
-                    {ex.exhibitNumber}
+            <div className="flex-1 p-8">
+              <div className="flex items-start justify-between mb-8">
+                <div className="flex flex-wrap items-center gap-4">
+                  <span className="font-black text-sm text-blue-400 bg-blue-500/10 px-5 py-2 rounded-xl border border-blue-500/30 uppercase tracking-[0.2em]">
+                    #{ex.exhibitNumber}
                   </span>
-                  <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded border ${CATEGORY_COLORS[ex.category]}`}>
+                  <span className={`text-[11px] font-black uppercase px-4 py-2 rounded-xl border-2 shadow-sm ${CATEGORY_COLORS[ex.category]}`}>
                     {ex.category}
                   </span>
-                  <div className="flex items-center gap-1.5 text-slate-400 text-xs font-medium">
-                    {/* Fix: className must be a string. Use a ternary operator to prevent potential boolean evaluation. */}
-                    <Calendar className={ex.priority >= 8 ? "w-4 h-4 text-red-500" : "w-4 h-4"} />
+                  <div className="flex items-center gap-3 text-slate-200 text-xs font-black uppercase tracking-widest ml-2">
+                    <Calendar size={16} className={ex.priority >= 8 ? "text-red-500" : "text-blue-500"} />
                     {ex.date}
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <button 
                     onClick={() => handleFastSummary(ex.id, ex.description, ex.legalRelevance)}
                     disabled={loadingSummaries[ex.id]}
-                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                    className="p-4 bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white rounded-2xl transition-all shadow-lg active:scale-90"
                     title="AI Summary"
                   >
-                    {loadingSummaries[ex.id] ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
+                    {loadingSummaries[ex.id] ? <Loader2 className="w-5 h-5 animate-spin" /> : <Zap className="w-5 h-5" />}
                   </button>
-                  <button onClick={() => onEdit(ex)} className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
-                    <Edit2 className="w-4 h-4" />
+                  <button onClick={() => onEdit(ex)} className="p-4 bg-white/5 text-slate-300 hover:text-white hover:bg-white/15 rounded-2xl transition-all shadow-lg">
+                    <Edit2 className="w-5 h-5" />
                   </button>
-                  <button onClick={() => onDelete(ex.id)} className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                    <Trash2 className="w-4 h-4" />
+                  <button onClick={() => onDelete(ex.id)} className="p-4 bg-red-600/20 text-red-400 hover:bg-red-600 hover:text-white rounded-2xl transition-all shadow-lg active:scale-90">
+                    <Trash2 className="w-5 h-5" />
                   </button>
                 </div>
               </div>
 
-              <div className="mb-4">
-                <h4 className="text-lg font-bold text-slate-900 mb-1">{ex.description}</h4>
-                <p className="text-sm text-slate-600 leading-relaxed italic border-l-2 border-slate-100 pl-3">
-                  {ex.legalRelevance}
-                </p>
+              <div className="mb-8">
+                <h4 className="text-3xl font-black text-white mb-4 tracking-tighter italic leading-none">{ex.description}</h4>
+                <div className="bg-black p-8 rounded-[2rem] border border-blue-500/20 shadow-inner">
+                  <p className="text-base text-slate-100 font-medium leading-relaxed italic border-l-4 border-blue-600/50 pl-8">
+                    {ex.legalRelevance}
+                  </p>
+                </div>
               </div>
 
               {summaries[ex.id] && (
-                <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-100 flex items-start gap-3 animate-in slide-in-from-left-2">
-                  <Zap className="w-4 h-4 text-blue-600 mt-0.5" />
+                <div className="mb-8 p-8 bg-blue-600/10 rounded-[2rem] border border-blue-500/30 flex items-start gap-5 animate-in slide-in-from-left-4">
+                  <Zap className="w-6 h-6 text-blue-400 mt-1 fill-blue-400/20" />
                   <div>
-                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-1">Judicial Impact</span>
-                    <p className="text-xs font-bold text-blue-900">{summaries[ex.id]}</p>
+                    <span className="text-[10px] font-black text-blue-400 uppercase tracking-[0.5em] block mb-3">Judicial Strategy Insight</span>
+                    <p className="text-lg font-black text-white italic leading-relaxed">"{summaries[ex.id]}"</p>
                   </div>
                 </div>
               )}
 
-              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-slate-50">
+              <div className="flex flex-wrap items-center gap-8 pt-8 border-t border-white/10">
                 {ex.witnesses && ex.witnesses.length > 0 && (
-                  <div className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-slate-400" />
-                    <div className="flex -space-x-2">
+                  <div className="flex items-center gap-4 bg-slate-950 px-5 py-3 rounded-2xl border border-white/5">
+                    <Users className="w-5 h-5 text-slate-400" />
+                    <div className="flex -space-x-3">
                       {ex.witnesses.map((w, i) => (
-                        <div key={i} className="w-6 h-6 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-slate-600" title={w}>
+                        <div key={i} className="w-10 h-10 rounded-xl bg-slate-800 border-2 border-slate-900 flex items-center justify-center text-xs font-black text-blue-300 shadow-2xl" title={w}>
                           {w.charAt(0)}
                         </div>
                       ))}
@@ -125,9 +126,9 @@ const ExhibitList: React.FC<ExhibitListProps> = ({ exhibits, onDelete, onEdit })
                 )}
                 
                 {ex.perjuryFlag && (
-                  <div className="flex items-center gap-1.5 text-rose-600 text-xs font-bold">
-                    <ShieldAlert className="w-4 h-4" />
-                    PERJURY RISK
+                  <div className="flex items-center gap-3 px-6 py-3 bg-red-600/20 text-red-500 border border-red-500/40 rounded-2xl text-xs font-black uppercase tracking-[0.2em] animate-pulse shadow-[0_0_20px_rgba(220,38,38,0.2)]">
+                    <ShieldAlert size={18} />
+                    Integrity Violation
                   </div>
                 )}
 
@@ -136,10 +137,10 @@ const ExhibitList: React.FC<ExhibitListProps> = ({ exhibits, onDelete, onEdit })
                     href={ex.fileUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-blue-600 transition-colors"
+                    className="flex items-center gap-4 px-8 py-4 bg-slate-950 text-slate-200 hover:text-white hover:bg-slate-800 rounded-2xl text-xs font-black uppercase tracking-widest border border-white/10 transition-all shadow-2xl active:scale-95"
                   >
-                    <Download className="w-4 h-4" />
-                    {ex.fileName}
+                    <Download className="w-5 h-5 text-blue-500" />
+                    Secure Link: {ex.fileName}
                   </a>
                 </div>
               </div>
