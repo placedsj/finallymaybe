@@ -1,21 +1,22 @@
 
-import Dexie from 'dexie';
-import type { Table } from 'dexie';
-import { Exhibit } from '../types';
+import Dexie, { type Table } from 'dexie';
+import { Exhibit, CommunicationEntry } from '../types';
 
 /**
  * LegalDatabase manages the indexedDB storage for exhibits and forensic data.
  */
 export class LegalDatabase extends Dexie {
   exhibits!: Table<Exhibit>;
+  communicationLogs!: Table<CommunicationEntry>;
 
   constructor() {
     super('LegalExhibitPro');
     
-    // Define the database schema using the version method inherited from the Dexie base class.
-    // Fixed: Using default import for Dexie to ensure 'version' and other inherited members are correctly recognized by the TypeScript compiler.
-    this.version(1).stores({
-      exhibits: 'id, exhibitNumber, category, date, priority, perjuryFlag'
+    // Explicitly defining the database schema versions.
+    // this.version() is a method inherited from Dexie for schema definition.
+    this.version(2).stores({
+      exhibits: 'id, exhibitNumber, category, date, priority, perjuryFlag',
+      communicationLogs: 'id, timestamp, sender, receiver, platform'
     });
   }
 }

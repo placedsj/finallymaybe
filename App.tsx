@@ -11,6 +11,7 @@ import TruthSniper from './components/TruthSniper';
 import LegalChatbot from './components/LegalChatbot';
 import SystemParams from './components/SystemParams';
 import ExhibitBook from './components/ExhibitBook';
+import CommunicationVault from './components/CommunicationVault'; // New import
 import { Exhibit, ExhibitCategory, Incident } from './types';
 import { CASE_DEFAULTS, CATEGORY_COLORS } from './constants';
 import { processExhibitFile, deepImageAnalysis } from './services/geminiService';
@@ -279,6 +280,7 @@ const App: React.FC = () => {
           </div>
         );
 
+      case 'comms': return <CommunicationVault />; // Integrated the new tab
       case 'prep': return <CounselPrepRoom exhibits={exhibits} />;
       case 'affidavit': return <AffidavitForge exhibits={exhibits} onCommit={(draft) => {
         setCommittedAffidavit(draft);
