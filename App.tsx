@@ -12,6 +12,7 @@ import LegalChatbot from './components/LegalChatbot';
 import SystemParams from './components/SystemParams';
 import ExhibitBook from './components/ExhibitBook';
 import CommunicationVault from './components/CommunicationVault'; // New import
+import { Analytics } from '@vercel/analytics/react';
 import { Exhibit, ExhibitCategory, Incident } from './types';
 import { CASE_DEFAULTS, CATEGORY_COLORS } from './constants';
 import { processExhibitFile, deepImageAnalysis } from './services/geminiService';
@@ -400,6 +401,8 @@ const App: React.FC = () => {
       <div className="print:hidden">
         <LegalChatbot exhibits={exhibits} />
       </div>
+      
+      <Analytics />
       
       <style>{`
         .shadow-neon { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
