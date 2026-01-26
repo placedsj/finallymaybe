@@ -10,7 +10,8 @@ import {
   ScanSearch,
   Briefcase,
   PenTool,
-  Target
+  Target,
+  MessageSquare
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -31,6 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'exhibits', label: 'The Record', icon: Files },
+    { id: 'comms', label: 'Comm Log', icon: MessageSquare },
     { id: 'affidavit', label: 'Forge Node', icon: PenTool },
     { id: 'sniper', label: 'Perjury Sniper', icon: Target },
     { id: 'prep', label: 'Strategy Room', icon: Briefcase },

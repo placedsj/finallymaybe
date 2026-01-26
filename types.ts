@@ -23,23 +23,31 @@ export interface Exhibit {
   date: string;
   category: ExhibitCategory;
   description: string;
-  legalRelevance: string; // References to Family Services Act s.17
-  bestInterestMapping?: BestInterestMapping; // AI-driven s.17 factor mapping
-  bestInterestFactor?: string; // Summary factor (e.g., 'Safety')
-  reflection?: string; // The "Letter to Harper" content
-  contradictionNote?: string; // For the Perjury Tracker
+  legalRelevance: string;
+  bestInterestMapping?: BestInterestMapping;
+  bestInterestFactor?: string;
+  reflection?: string;
+  contradictionNote?: string;
   caption: string; 
   fileUrl: string;
   fileName: string;
   fileType: string;
-  fileHash?: string; // Digital fingerprint for Chain of Custody
+  fileHash?: string;
   priority: number;
-  witnesses: string[]; // ['Jane', 'Emma', 'Self']
-  isLocationVerified?: boolean;
-  locationData?: { lat: number; lng: number; accuracy: string };
-  transcript?: string; 
+  witnesses: string[];
   status: 'pending' | 'processed' | 'flagged';
   perjuryFlag?: boolean;
+}
+
+export interface CommunicationEntry {
+  id: string;
+  timestamp: string;
+  sender: string;
+  receiver: string;
+  content: string;
+  platform: string; // 'SMS', 'WhatsApp', 'Email', 'Messenger'
+  sentiment?: 'AGRESSIVE' | 'COOPERATIVE' | 'NEUTRAL';
+  isFlagged?: boolean;
 }
 
 export interface Incident {
