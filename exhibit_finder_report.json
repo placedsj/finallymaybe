@@ -1,0 +1,2027 @@
+{
+  "timestamp": "2026-01-16T04:36:09.856315",
+  "summary": {
+    "total_exhibits": 87,
+    "found": 79,
+    "missing": 8,
+    "success_rate": "90.8%"
+  },
+  "found_matches": [
+    {
+      "exhibit": {
+        "Exhibit Number": "A-1",
+        "Description": "Police Email - Assault Charge Confirmation",
+        "Date": "2025-09-26",
+        "Keywords": "police email assault charge confirmation",
+        "File Type": "pdf",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-1_Police Email - Assault Charge Confirmation.pdf",
+        "name": "EXHIBIT_A-1_Police Email - Assault Charge Confirmation.pdf",
+        "size": 42259,
+        "modified": "2025-11-10 07:37:19.413581",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-1' in filename",
+        "Description words: police, email, assault, charge, confirmation",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-2",
+        "Description": "Text Admission - I'm really sorry for hitting you Craig",
+        "Date": "2024-11-21",
+        "Keywords": "text sorry hitting craig admission",
+        "File Type": "jpg",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-28_Text - Supplier Logistics Dont want Craig to know.jpeg",
+        "name": "EXHIBIT_A-28_Text - Supplier Logistics Dont want Craig to know.jpeg",
+        "size": 90202,
+        "modified": "2026-01-01 06:48:05.461228",
+        "extension": ".jpeg"
+      },
+      "score": 110.0,
+      "reasons": [
+        "Exhibit number 'A-2' in filename",
+        "Description words: text"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-3",
+        "Description": "Mirror Shattered - Violence Incident",
+        "Date": "2024-11-30",
+        "Keywords": "mirror shattered violence broken",
+        "File Type": "jpg",
+        "Category": "PERJURY",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-3_Mirror Shattered - Violence Incident.jpg",
+        "name": "EXHIBIT_A-3_Mirror Shattered - Violence Incident.jpg",
+        "size": 10977,
+        "modified": "2026-01-11 23:44:03.244165",
+        "extension": ".jpg"
+      },
+      "score": 155.0,
+      "reasons": [
+        "Exhibit number 'A-3' in filename",
+        "Description words: mirror, shattered, violence, incident",
+        "File type match: .jpg"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-4",
+        "Description": "Diaper Rash Progression Photos",
+        "Date": "2024-12-09",
+        "Keywords": "diaper rash progression photos medical",
+        "File Type": "jpg",
+        "Category": "SAFETY",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-4_Diaper Rash Progression Photos.jpg",
+        "name": "EXHIBIT_A-4_Diaper Rash Progression Photos.jpg",
+        "size": 139816,
+        "modified": "2025-12-31 10:40:49.459572",
+        "extension": ".jpg"
+      },
+      "score": 155.0,
+      "reasons": [
+        "Exhibit number 'A-4' in filename",
+        "Description words: diaper, rash, progression, photos",
+        "File type match: .jpg"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-5",
+        "Description": "Drug Test - Negative Dilute Result (Applicant)",
+        "Date": "2025-01-29",
+        "Keywords": "drug test negative dilute result",
+        "File Type": "pdf",
+        "Category": "PERJURY",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-5_Drug Test - Negative Dilute Result Applicant.png",
+        "name": "EXHIBIT_A-5_Drug Test - Negative Dilute Result Applicant.png",
+        "size": 776945,
+        "modified": "2025-11-06 04:20:44.116275",
+        "extension": ".png"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-5' in filename",
+        "Description words: drug, test, negative, dilute, result"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-6",
+        "Description": "Methamphetamine Paraphernalia Photograph",
+        "Date": "2025-03-15",
+        "Keywords": "methamphetamine meth paraphernalia photo pipe",
+        "File Type": "jpg",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-6_Methamphetamine Paraphernalia Photograph.jpeg",
+        "name": "EXHIBIT_A-6_Methamphetamine Paraphernalia Photograph.jpeg",
+        "size": 191407,
+        "modified": "2026-01-01 06:48:09.949048",
+        "extension": ".jpeg"
+      },
+      "score": 130.0,
+      "reasons": [
+        "Exhibit number 'A-6' in filename",
+        "Description words: methamphetamine, paraphernalia, photograph"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-7",
+        "Description": "Harper Exposure to Violence - Dec 9 Incident",
+        "Date": "2024-12-09",
+        "Keywords": "harper exposure violence december incident choking",
+        "File Type": "pdf",
+        "Category": "SAFETY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-7_Harper Exposure to Violence - Dec 9 Incident.pdf",
+        "name": "EXHIBIT_A-7_Harper Exposure to Violence - Dec 9 Incident.pdf",
+        "size": 13310343,
+        "modified": "2025-11-30 02:34:11.072702",
+        "extension": ".pdf"
+      },
+      "score": 155.0,
+      "reasons": [
+        "Exhibit number 'A-7' in filename",
+        "Description words: harper, exposure, violence, incident",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-8",
+        "Description": "Email - Won't see Harper until judge in October",
+        "Date": "2025-06-18",
+        "Keywords": "email wont see harper judge october denial",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-8_Email - Wont see Harper until judge in October.pdf",
+        "name": "EXHIBIT_A-8_Email - Wont see Harper until judge in October.pdf",
+        "size": 63676,
+        "modified": "2025-11-25 15:38:24.562753",
+        "extension": ".pdf"
+      },
+      "score": 155.0,
+      "reasons": [
+        "Exhibit number 'A-8' in filename",
+        "Description words: email, harper, until, judge",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-9",
+        "Description": "Jane Ryan Call - Take me to court yourself",
+        "Date": "2025-10-22",
+        "Keywords": "jane ryan call court yourself obstruction",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "8"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-9_Jane Ryan Call - Take me to court yourself.webp",
+        "name": "EXHIBIT_A-9_Jane Ryan Call - Take me to court yourself.webp",
+        "size": 355294,
+        "modified": "2026-01-11 23:44:00.337368",
+        "extension": ".webp"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-9' in filename",
+        "Description words: jane, ryan, call, take, court"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-10",
+        "Description": "Harper Health Tracking - First Week",
+        "Date": "2024-11-17",
+        "Keywords": "harper health tracking first week caregiving",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "7"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-10_Harper Health Tracking - First Week.pdf",
+        "name": "EXHIBIT_A-10_Harper Health Tracking - First Week.pdf",
+        "size": 3800,
+        "modified": "2025-11-25 15:39:19.342900",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-10' in filename",
+        "Description words: harper, health, tracking, first, week",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-11",
+        "Description": "Applicant text re: Meth and Breastfeeding",
+        "Date": "2024-11-30",
+        "Keywords": "text meth breastfeeding admission drug",
+        "File Type": "jpg",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\DALE MASTER ARCHIVE\\Old Realtor Files (2+ years old)\\Eyes On The Prize Top 25 Under 25 Survey_files\\nr-spa-1184.min.js.download",
+        "name": "nr-spa-1184.min.js.download",
+        "size": 38395,
+        "modified": "2020-10-27 20:31:24",
+        "extension": ".download"
+      },
+      "score": 100.0,
+      "reasons": [
+        "Exhibit number 'A-11' in filename"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-12",
+        "Description": "Interim Order - March 22 2025",
+        "Date": "2025-01-29",
+        "Keywords": "interim order march court sunday access",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "8"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-12_Interim Order - March 22 2025.pdf",
+        "name": "EXHIBIT_A-12_Interim Order - March 22 2025.pdf",
+        "size": 42259,
+        "modified": "2025-11-10 07:37:19.413581",
+        "extension": ".pdf"
+      },
+      "score": 155.0,
+      "reasons": [
+        "Exhibit number 'A-12' in filename",
+        "Description words: interim, order, march, 2025",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-13",
+        "Description": "Communications - Access Denial June 2025",
+        "Date": "2025-06-04",
+        "Keywords": "communications access denial june email text",
+        "File Type": "jpg",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-13_Communications - Access Denial June 2025.jpg",
+        "name": "EXHIBIT_A-13_Communications - Access Denial June 2025.jpg",
+        "size": 135901,
+        "modified": "2025-12-22 01:18:33.890493",
+        "extension": ".jpg"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-13' in filename",
+        "Description words: communications, access, denial, june, 2025",
+        "File type match: .jpg"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-14",
+        "Description": "Communications - Access Denial June 2025",
+        "Date": "2025-06-04",
+        "Keywords": "communications access denial june email text",
+        "File Type": "jpg",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-14_Communications - Access Denial June 2025.wav",
+        "name": "EXHIBIT_A-14_Communications - Access Denial June 2025.wav",
+        "size": 605288,
+        "modified": "2025-12-22 01:18:42.400363",
+        "extension": ".wav"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-14' in filename",
+        "Description words: communications, access, denial, june, 2025"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-15",
+        "Description": "Communications - Access Denial June 2025",
+        "Date": "2025-06-04",
+        "Keywords": "communications access denial june email text",
+        "File Type": "jpg",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-15_Communications - Access Denial June 2025.png",
+        "name": "EXHIBIT_A-15_Communications - Access Denial June 2025.png",
+        "size": 276006,
+        "modified": "2025-11-22 05:34:00.713129",
+        "extension": ".png"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-15' in filename",
+        "Description words: communications, access, denial, june, 2025"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-16",
+        "Description": "Communications - Access Denial June 2025",
+        "Date": "2025-06-04",
+        "Keywords": "communications access denial june email text",
+        "File Type": "jpg",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-16_Communications - Access Denial June 2025.png",
+        "name": "EXHIBIT_A-16_Communications - Access Denial June 2025.png",
+        "size": 276006,
+        "modified": "2025-11-22 05:34:00.713129",
+        "extension": ".png"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-16' in filename",
+        "Description words: communications, access, denial, june, 2025"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-17",
+        "Description": "Character Reference - Former Partner Support",
+        "Date": "2024-11-19",
+        "Keywords": "character reference former partner support affidavit",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "7"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-17_Character Reference - Former Partner Support.pdf",
+        "name": "EXHIBIT_A-17_Character Reference - Former Partner Support.pdf",
+        "size": 86818,
+        "modified": "2025-11-17 17:21:42.757270",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-17' in filename",
+        "Description words: character, reference, former, partner, support",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-19",
+        "Description": "DUI Documentation 2019",
+        "Date": "2019-01-01",
+        "Keywords": "dui documentation 2019 court record",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "5"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-19_DUI Documentation 2019.json",
+        "name": "EXHIBIT_A-19_DUI Documentation 2019.json",
+        "size": 279,
+        "modified": "2025-12-04 15:34:26",
+        "extension": ".json"
+      },
+      "score": 120.0,
+      "reasons": [
+        "Exhibit number 'A-19' in filename",
+        "Description words: documentation, 2019"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-20",
+        "Description": "Business Failure Documentation 2021",
+        "Date": "2021-01-01",
+        "Keywords": "business failure documentation 2021 bankruptcy",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "5"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\ALL DALES DOCS FROM DOCUMENT FOLDER\\A-2023-170170 Final letter.pdf",
+        "name": "A-2023-170170 Final letter.pdf",
+        "size": 524397,
+        "modified": "2024-01-03 14:20:41",
+        "extension": ".pdf"
+      },
+      "score": 115.0,
+      "reasons": [
+        "Exhibit number 'A-20' in filename",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-21",
+        "Description": "Drug Test - Negative Clean 13-panel (Respondent)",
+        "Date": "2025-01-30",
+        "Keywords": "drug test negative clean panel respondent sobriety",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-21_Drug Test - Negative Clean 13-panel Respondent.pdf",
+        "name": "EXHIBIT_A-21_Drug Test - Negative Clean 13-panel Respondent.pdf",
+        "size": 26427528,
+        "modified": "2025-11-26 21:17:53.589604",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-21' in filename",
+        "Description words: drug, test, negative, clean, 13-panel",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-22",
+        "Description": "E-Transfer Records to Drug Dealer",
+        "Date": "2024-07-08",
+        "Keywords": "etransfer transfer records drug dealer payment",
+        "File Type": "pdf",
+        "Category": "FINANCIAL",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-22_E-Transfer Records to Drug Dealer.jpeg",
+        "name": "EXHIBIT_A-22_E-Transfer Records to Drug Dealer.jpeg",
+        "size": 92507,
+        "modified": "2026-01-01 06:48:05.455072",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-22' in filename",
+        "Description words: e-transfer, records, drug, dealer"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-24",
+        "Description": "Parenting Agreement Jan 22 2025",
+        "Date": "2025-01-22",
+        "Keywords": "parenting agreement january sworn document",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "8"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-24_Parenting Agreement Jan 22 2025.mp4",
+        "name": "EXHIBIT_A-24_Parenting Agreement Jan 22 2025.mp4",
+        "size": 24076636,
+        "modified": "2026-01-01 06:48:07.536047",
+        "extension": ".mp4"
+      },
+      "score": 130.0,
+      "reasons": [
+        "Exhibit number 'A-24' in filename",
+        "Description words: parenting, agreement, 2025"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-25",
+        "Description": "Police Report - No Charges Against Respondent",
+        "Date": "2024-08-05",
+        "Keywords": "police report no charges respondent exculpatory",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "7"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-25_Police Report - No Charges Against Respondent.m4a",
+        "name": "EXHIBIT_A-25_Police Report - No Charges Against Respondent.m4a",
+        "size": 31442291,
+        "modified": "2025-11-19 19:21:57.290987",
+        "extension": ".m4a"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-25' in filename",
+        "Description words: police, report, charges, against, respondent"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-26",
+        "Description": "Police Report - No Charges Against Respondent",
+        "Date": "2024-09-10",
+        "Keywords": "police report no charges respondent exculpatory",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "7"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-26_Police Report - No Charges Against Respondent.jpeg",
+        "name": "EXHIBIT_A-26_Police Report - No Charges Against Respondent.jpeg",
+        "size": 79114,
+        "modified": "2026-01-01 06:48:07.748923",
+        "extension": ".jpeg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-26' in filename",
+        "Description words: police, report, charges, against, respondent"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-28",
+        "Description": "Text - Supplier Logistics Don't want Craig to know",
+        "Date": "2024-12-08",
+        "Keywords": "text supplier logistics dont want craig know drug",
+        "File Type": "jpg",
+        "Category": "PERJURY",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-28_Text - Supplier Logistics Dont want Craig to know.jpeg",
+        "name": "EXHIBIT_A-28_Text - Supplier Logistics Dont want Craig to know.jpeg",
+        "size": 90202,
+        "modified": "2026-01-01 06:48:05.461228",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-28' in filename",
+        "Description words: text, supplier, logistics, want"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-29",
+        "Description": "Email - 54 days to protect your lies",
+        "Date": "2025-07-01",
+        "Keywords": "email 54 days protect lies contempt",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-29_Email - 54 days to protect your lies.jpeg",
+        "name": "EXHIBIT_A-29_Email - 54 days to protect your lies.jpeg",
+        "size": 84435,
+        "modified": "2026-01-01 06:48:05.468213",
+        "extension": ".jpeg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-29' in filename",
+        "Description words: email, days, protect, your, lies"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-30",
+        "Description": "Master Moore Interim Order",
+        "Date": "2025-01-29",
+        "Keywords": "master moore interim order court parenting time",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "8"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-30_Master Moore Interim Order.pdf",
+        "name": "EXHIBIT_A-30_Master Moore Interim Order.pdf",
+        "size": 301882,
+        "modified": "2026-01-11 20:37:43.764925",
+        "extension": ".pdf"
+      },
+      "score": 155.0,
+      "reasons": [
+        "Exhibit number 'A-30' in filename",
+        "Description words: master, moore, interim, order",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-31",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "size": 361353,
+        "modified": "2026-01-01 06:48:06.095848",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-31' in filename",
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-32",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "size": 361353,
+        "modified": "2026-01-01 06:48:06.095848",
+        "extension": ".jpeg"
+      },
+      "score": 40.0,
+      "reasons": [
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-33",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-33_Severed Contact Logs - 36 Days.jpg",
+        "name": "EXHIBIT_A-33_Severed Contact Logs - 36 Days.jpg",
+        "size": 176889,
+        "modified": "2025-12-22 01:18:39.932966",
+        "extension": ".jpg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-33' in filename",
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-34",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "size": 361353,
+        "modified": "2026-01-01 06:48:06.095848",
+        "extension": ".jpeg"
+      },
+      "score": 40.0,
+      "reasons": [
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-35",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-35_Severed Contact Logs - 36 Days.jpg",
+        "name": "EXHIBIT_A-35_Severed Contact Logs - 36 Days.jpg",
+        "size": 10977,
+        "modified": "2026-01-11 23:44:03.244165",
+        "extension": ".jpg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-35' in filename",
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-36",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-36_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-36_Severed Contact Logs - 36 Days.jpeg",
+        "size": 217642,
+        "modified": "2026-01-01 06:48:09.656186",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-36' in filename",
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-37",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "size": 361353,
+        "modified": "2026-01-01 06:48:06.095848",
+        "extension": ".jpeg"
+      },
+      "score": 40.0,
+      "reasons": [
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-38",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "size": 361353,
+        "modified": "2026-01-01 06:48:06.095848",
+        "extension": ".jpeg"
+      },
+      "score": 40.0,
+      "reasons": [
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-39",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-31_Severed Contact Logs - 36 Days.jpeg",
+        "size": 361353,
+        "modified": "2026-01-01 06:48:06.095848",
+        "extension": ".jpeg"
+      },
+      "score": 40.0,
+      "reasons": [
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-40",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-40_Severed Contact Logs - 36 Days.jpg",
+        "name": "EXHIBIT_A-40_Severed Contact Logs - 36 Days.jpg",
+        "size": 128596,
+        "modified": "2025-11-13 20:50:08.511730",
+        "extension": ".jpg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-40' in filename",
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-41",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-41_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-41_Severed Contact Logs - 36 Days.jpeg",
+        "size": 39954,
+        "modified": "2026-01-01 06:48:08.965999",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-41' in filename",
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-42",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-42_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-42_Severed Contact Logs - 36 Days.jpeg",
+        "size": 83516,
+        "modified": "2026-01-01 06:48:05.435884",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-42' in filename",
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-43",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-43_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-43_Severed Contact Logs - 36 Days.jpeg",
+        "size": 94244,
+        "modified": "2026-01-01 06:48:05.257974",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-43' in filename",
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-44",
+        "Description": "Severed Contact Logs - 36 Days",
+        "Date": "2025-09-05",
+        "Keywords": "severed contact logs blocked calls facetime messages",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-44_Severed Contact Logs - 36 Days.jpeg",
+        "name": "EXHIBIT_A-44_Severed Contact Logs - 36 Days.jpeg",
+        "size": 41213,
+        "modified": "2026-01-01 06:48:05.220731",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-44' in filename",
+        "Description words: severed, contact, logs, days"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-45",
+        "Description": "Employment Records - Respondent Stability",
+        "Date": "2025-07-15",
+        "Keywords": "employment records respondent stability work proof",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "7"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-45_Employment Records - Respondent Stability.jpeg",
+        "name": "EXHIBIT_A-45_Employment Records - Respondent Stability.jpeg",
+        "size": 303363,
+        "modified": "2026-01-01 06:48:06.489977",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-45' in filename",
+        "Description words: employment, records, respondent, stability"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-46",
+        "Description": "Text to Friend - Positive Harper Update",
+        "Date": "2024-10-18",
+        "Keywords": "text friend positive harper update paternal engagement",
+        "File Type": "jpg",
+        "Category": "INTEGRITY",
+        "Priority": "6"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-46_Text to Friend - Positive Harper Update.jpeg",
+        "name": "EXHIBIT_A-46_Text to Friend - Positive Harper Update.jpeg",
+        "size": 71700,
+        "modified": "2026-01-01 06:48:07.287450",
+        "extension": ".jpeg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-46' in filename",
+        "Description words: text, friend, positive, harper, update"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-47",
+        "Description": "Hospital Admission Text - Rolling one super quick",
+        "Date": "2024-11-13",
+        "Keywords": "hospital admission text rolling super quick drug",
+        "File Type": "jpg",
+        "Category": "PERJURY",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-47_Hospital Admission Text - Rolling one super quick.jpeg",
+        "name": "EXHIBIT_A-47_Hospital Admission Text - Rolling one super quick.jpeg",
+        "size": 248208,
+        "modified": "2026-01-01 06:48:04.906162",
+        "extension": ".jpeg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-47' in filename",
+        "Description words: hospital, admission, text, rolling, super"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-48",
+        "Description": "Celebratory Recovery Attendance Documentation",
+        "Date": "2025-01-30",
+        "Keywords": "celebratory recovery attendance documentation sobriety",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "8"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-48_Celebratory Recovery Attendance Documentation.ogg",
+        "name": "EXHIBIT_A-48_Celebratory Recovery Attendance Documentation.ogg",
+        "size": 155213,
+        "modified": "2026-01-01 06:48:05.294101",
+        "extension": ".ogg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-48' in filename",
+        "Description words: celebratory, recovery, attendance, documentation"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-49",
+        "Description": "Police Charge Confirmation - Applicant",
+        "Date": "2025-09-01",
+        "Keywords": "police charge confirmation applicant assault official",
+        "File Type": "pdf",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-49_Police Charge Confirmation - Applicant.jpeg",
+        "name": "EXHIBIT_A-49_Police Charge Confirmation - Applicant.jpeg",
+        "size": 255099,
+        "modified": "2026-01-01 06:48:04.856043",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-49' in filename",
+        "Description words: police, charge, confirmation, applicant"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-50",
+        "Description": "New Years Access Denial",
+        "Date": "2025-01-01",
+        "Keywords": "new years access denial contact prevention",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "7"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-50_New Years Access Denial.jpg",
+        "name": "EXHIBIT_A-50_New Years Access Denial.jpg",
+        "size": 339245,
+        "modified": "2026-01-12 23:51:36",
+        "extension": ".jpg"
+      },
+      "score": 130.0,
+      "reasons": [
+        "Exhibit number 'A-50' in filename",
+        "Description words: years, access, denial"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-51",
+        "Description": "Complaint Against Social Worker Gallant",
+        "Date": "2025-02-01",
+        "Keywords": "complaint social worker gallant conflict interest",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "8"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-51_Complaint Against Social Worker Gallant.pdf",
+        "name": "EXHIBIT_A-51_Complaint Against Social Worker Gallant.pdf",
+        "size": 135160,
+        "modified": "2026-01-11 19:19:10.256548",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-51' in filename",
+        "Description words: complaint, against, social, worker, gallant",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-52",
+        "Description": "NBASW Complaint Receipt",
+        "Date": "2025-02-10",
+        "Keywords": "nbasw complaint receipt confirmation official letter",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "7"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-52_NBASW Complaint Receipt.pdf",
+        "name": "EXHIBIT_A-52_NBASW Complaint Receipt.pdf",
+        "size": 3047161,
+        "modified": "2025-11-19 01:40:16",
+        "extension": ".pdf"
+      },
+      "score": 145.0,
+      "reasons": [
+        "Exhibit number 'A-52' in filename",
+        "Description words: nbasw, complaint, receipt",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-53",
+        "Description": "Medical Records Request - Obstructed Response",
+        "Date": "2025-02-13",
+        "Keywords": "medical records request obstructed response harper",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "8"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-53_Medical Records Request - Obstructed Response.jpeg",
+        "name": "EXHIBIT_A-53_Medical Records Request - Obstructed Response.jpeg",
+        "size": 109251,
+        "modified": "2026-01-01 06:48:04.866295",
+        "extension": ".jpeg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-53' in filename",
+        "Description words: medical, records, request, obstructed, response"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-54",
+        "Description": "Tax Returns 2021-2024",
+        "Date": "2021-01-01",
+        "Keywords": "tax returns 2021 2022 2023 2024 cra financial",
+        "File Type": "pdf",
+        "Category": "FINANCIAL",
+        "Priority": "6"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-54_Tax Returns 2021-2024.jpeg",
+        "name": "EXHIBIT_A-54_Tax Returns 2021-2024.jpeg",
+        "size": 338925,
+        "modified": "2026-01-01 06:48:05.739858",
+        "extension": ".jpeg"
+      },
+      "score": 120.0,
+      "reasons": [
+        "Exhibit number 'A-54' in filename",
+        "Description words: returns, 2021-2024"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-55",
+        "Description": "Respondent Confrontation Text - Re Meth in Milk",
+        "Date": "2024-12-02",
+        "Keywords": "respondent confrontation text meth milk endangerment",
+        "File Type": "jpg",
+        "Category": "SAFETY",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-55_Respondent Confrontation Text - Re Meth in Milk.jpeg",
+        "name": "EXHIBIT_A-55_Respondent Confrontation Text - Re Meth in Milk.jpeg",
+        "size": 103381,
+        "modified": "2026-01-01 06:48:05.488087",
+        "extension": ".jpeg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-55' in filename",
+        "Description words: respondent, confrontation, text, meth, milk"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-56",
+        "Description": "Respondent Drug Test - Negative Clean",
+        "Date": "2025-01-30",
+        "Keywords": "respondent drug test negative clean sobriety proof",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-56_Respondent Drug Test - Negative Clean.png",
+        "name": "EXHIBIT_A-56_Respondent Drug Test - Negative Clean.png",
+        "size": 285114,
+        "modified": "2025-11-06 04:20:43.691964",
+        "extension": ".png"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-56' in filename",
+        "Description words: respondent, drug, test, negative, clean"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-57",
+        "Description": "Medical Update to Grandmother",
+        "Date": "2024-11-16",
+        "Keywords": "medical update grandmother email infant care",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "6"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-57_Medical Update to Grandmother.jpeg",
+        "name": "EXHIBIT_A-57_Medical Update to Grandmother.jpeg",
+        "size": 4468389,
+        "modified": "2025-11-13 20:56:07.762797",
+        "extension": ".jpeg"
+      },
+      "score": 130.0,
+      "reasons": [
+        "Exhibit number 'A-57' in filename",
+        "Description words: medical, update, grandmother"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-60",
+        "Description": "Video - Applicant with Meth Pipe in Home",
+        "Date": "2025-05-22",
+        "Keywords": "video applicant meth pipe home drug use",
+        "File Type": "mp4",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-60_Video - Applicant with Meth Pipe in Home.ogg",
+        "name": "EXHIBIT_A-60_Video - Applicant with Meth Pipe in Home.ogg",
+        "size": 1028814,
+        "modified": "2026-01-01 06:48:07.605941",
+        "extension": ".ogg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-60' in filename",
+        "Description words: video, applicant, with, meth, pipe"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-61",
+        "Description": "Respondent Refusal - Meth Stop with Harper in Car",
+        "Date": "2025-06-04",
+        "Keywords": "respondent refusal meth stop harper car protective",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "8"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-61_Respondent Refusal - Meth Stop with Harper in Car.mp4",
+        "name": "EXHIBIT_A-61_Respondent Refusal - Meth Stop with Harper in Car.mp4",
+        "size": 2281550,
+        "modified": "2026-01-01 06:48:06.956021",
+        "extension": ".mp4"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-61' in filename",
+        "Description words: respondent, refusal, meth, stop, with"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-63",
+        "Description": "Signed Parenting Agreement",
+        "Date": "2025-01-22",
+        "Keywords": "signed parenting agreement mutual commitment framework",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "8"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\DALE MASTER ARCHIVE\\Old Realtor Files (2+ years old)\\lancasterplazasignedcommissionagreement - Copy.pdf",
+        "name": "lancasterplazasignedcommissionagreement - Copy.pdf",
+        "size": 454479,
+        "modified": "2019-04-08 22:57:02",
+        "extension": ".pdf"
+      },
+      "score": 35.0,
+      "reasons": [
+        "Description words: signed, agreement",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-64",
+        "Description": "Initial Assault Allegation - Police Report",
+        "Date": "2024-09-26",
+        "Keywords": "initial assault allegation police report self defense",
+        "File Type": "pdf",
+        "Category": "INTEGRITY",
+        "Priority": "7"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-1_Police Email - Assault Charge Confirmation.pdf",
+        "name": "EXHIBIT_A-1_Police Email - Assault Charge Confirmation.pdf",
+        "size": 42259,
+        "modified": "2025-11-10 07:37:19.413581",
+        "extension": ".pdf"
+      },
+      "score": 35.0,
+      "reasons": [
+        "Description words: assault, police",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-66",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-66_Sunday Visit Denial Records - 18 Denials.jpeg",
+        "name": "EXHIBIT_A-66_Sunday Visit Denial Records - 18 Denials.jpeg",
+        "size": 159053,
+        "modified": "2026-01-01 06:48:09.906103",
+        "extension": ".jpeg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-66' in filename",
+        "Description words: sunday, visit, denial, records, denials"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-67",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-67_Sunday Visit Denial Records - 18 Denials.pdf",
+        "name": "EXHIBIT_A-67_Sunday Visit Denial Records - 18 Denials.pdf",
+        "size": 124083,
+        "modified": "2026-01-01 07:46:00",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-67' in filename",
+        "Description words: sunday, visit, denial, records, denials",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-68",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-68_Sunday Visit Denial Records - 18 Denials.jpeg",
+        "name": "EXHIBIT_A-68_Sunday Visit Denial Records - 18 Denials.jpeg",
+        "size": 84557,
+        "modified": "2026-01-01 06:48:05.458018",
+        "extension": ".jpeg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-68' in filename",
+        "Description words: sunday, visit, denial, records, denials"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-69",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-69_Sunday Visit Denial Records - 18 Denials.pdf",
+        "name": "EXHIBIT_A-69_Sunday Visit Denial Records - 18 Denials.pdf",
+        "size": 124083,
+        "modified": "2026-01-01 07:46:00",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-69' in filename",
+        "Description words: sunday, visit, denial, records, denials",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-70",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-70_Sunday Visit Denial Records - 18 Denials.pdf",
+        "name": "EXHIBIT_A-70_Sunday Visit Denial Records - 18 Denials.pdf",
+        "size": 124083,
+        "modified": "2026-01-01 07:46:00",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-70' in filename",
+        "Description words: sunday, visit, denial, records, denials",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-71",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-71_Sunday Visit Denial Records - 18 Denials.pdf",
+        "name": "EXHIBIT_A-71_Sunday Visit Denial Records - 18 Denials.pdf",
+        "size": 124083,
+        "modified": "2026-01-01 07:46:00",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-71' in filename",
+        "Description words: sunday, visit, denial, records, denials",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-72",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-72_Sunday Visit Denial Records - 18 Denials.pdf",
+        "name": "EXHIBIT_A-72_Sunday Visit Denial Records - 18 Denials.pdf",
+        "size": 13310343,
+        "modified": "2025-11-30 02:34:11.072702",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-72' in filename",
+        "Description words: sunday, visit, denial, records, denials",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-73",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-73_Sunday Visit Denial Records - 18 Denials",
+        "name": "EXHIBIT_A-73_Sunday Visit Denial Records - 18 Denials",
+        "size": 317,
+        "modified": "2024-12-19 04:55:44",
+        "extension": ""
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-73' in filename",
+        "Description words: sunday, visit, denial, records, denials"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-74",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-74_Sunday Visit Denial Records - 18 Denials.pdf",
+        "name": "EXHIBIT_A-74_Sunday Visit Denial Records - 18 Denials.pdf",
+        "size": 124083,
+        "modified": "2026-01-01 07:46:00",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-74' in filename",
+        "Description words: sunday, visit, denial, records, denials",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-75",
+        "Description": "Sunday Visit Denial Records - 18 Denials",
+        "Date": "2025-06-04",
+        "Keywords": "sunday visit denial records 18 denials",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-75_Sunday Visit Denial Records - 18 Denials.pdf",
+        "name": "EXHIBIT_A-75_Sunday Visit Denial Records - 18 Denials.pdf",
+        "size": 124083,
+        "modified": "2026-01-01 07:46:00",
+        "extension": ".pdf"
+      },
+      "score": 165.0,
+      "reasons": [
+        "Exhibit number 'A-75' in filename",
+        "Description words: sunday, visit, denial, records, denials",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-77",
+        "Description": "Jane Ryan Social Media Block",
+        "Date": "2025-10-13",
+        "Keywords": "jane ryan social media block emergency contact",
+        "File Type": "jpg",
+        "Category": "OBSTRUCTION",
+        "Priority": "7"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-77_Jane Ryan Social Media Block.jpeg",
+        "name": "EXHIBIT_A-77_Jane Ryan Social Media Block.jpeg",
+        "size": 44870,
+        "modified": "2026-01-01 06:48:05.138489",
+        "extension": ".jpeg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-77' in filename",
+        "Description words: jane, ryan, social, media, block"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-78",
+        "Description": "Jane Ryan Death Threat - Never know when you'll lose her",
+        "Date": "2025-10-26",
+        "Keywords": "jane ryan death threat never know lose intimidation",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-78_Jane Ryan Death Threat - Never know when youll lo.jpg",
+        "name": "EXHIBIT_A-78_Jane Ryan Death Threat - Never know when youll lo.jpg",
+        "size": 95968,
+        "modified": "2025-12-22 01:18:29.455080",
+        "extension": ".jpg"
+      },
+      "score": 150.0,
+      "reasons": [
+        "Exhibit number 'A-78' in filename",
+        "Description words: jane, ryan, death, threat, never"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-79",
+        "Description": "Notices of Assessment - Respondent",
+        "Date": "2021-01-01",
+        "Keywords": "notices assessment respondent cra tax 2021",
+        "File Type": "pdf",
+        "Category": "FINANCIAL",
+        "Priority": "5"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-79_Notices of Assessment - Respondent.jpg",
+        "name": "EXHIBIT_A-79_Notices of Assessment - Respondent.jpg",
+        "size": 204531,
+        "modified": "2025-12-22 01:18:31.883112",
+        "extension": ".jpg"
+      },
+      "score": 130.0,
+      "reasons": [
+        "Exhibit number 'A-79' in filename",
+        "Description words: notices, assessment, respondent"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-80",
+        "Description": "Notices of Assessment - Respondent",
+        "Date": "2022-01-01",
+        "Keywords": "notices assessment respondent cra tax 2022",
+        "File Type": "pdf",
+        "Category": "FINANCIAL",
+        "Priority": "5"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-80_Notices of Assessment - Respondent.jpeg",
+        "name": "EXHIBIT_A-80_Notices of Assessment - Respondent.jpeg",
+        "size": 427321,
+        "modified": "2026-01-01 06:48:06.117856",
+        "extension": ".jpeg"
+      },
+      "score": 130.0,
+      "reasons": [
+        "Exhibit number 'A-80' in filename",
+        "Description words: notices, assessment, respondent"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-81",
+        "Description": "Notices of Assessment - Respondent",
+        "Date": "2023-01-01",
+        "Keywords": "notices assessment respondent cra tax 2023",
+        "File Type": "pdf",
+        "Category": "FINANCIAL",
+        "Priority": "5"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-79_Notices of Assessment - Respondent.jpg",
+        "name": "EXHIBIT_A-79_Notices of Assessment - Respondent.jpg",
+        "size": 204531,
+        "modified": "2025-12-22 01:18:31.883112",
+        "extension": ".jpg"
+      },
+      "score": 30.0,
+      "reasons": [
+        "Description words: notices, assessment, respondent"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-82",
+        "Description": "Notices of Assessment - Respondent",
+        "Date": "2024-01-01",
+        "Keywords": "notices assessment respondent cra tax 2024",
+        "File Type": "pdf",
+        "Category": "FINANCIAL",
+        "Priority": "5"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-82_Notices of Assessment - Respondent.jpeg",
+        "name": "EXHIBIT_A-82_Notices of Assessment - Respondent.jpeg",
+        "size": 185084,
+        "modified": "2026-01-01 06:48:09.061116",
+        "extension": ".jpeg"
+      },
+      "score": 130.0,
+      "reasons": [
+        "Exhibit number 'A-82' in filename",
+        "Description words: notices, assessment, respondent"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-83",
+        "Description": "Email - Access Denial Intent",
+        "Date": "2025-06-18",
+        "Keywords": "email access denial intent premeditated contempt",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "9"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-83_Email - Access Denial Intent.jpeg",
+        "name": "EXHIBIT_A-83_Email - Access Denial Intent.jpeg",
+        "size": 989668,
+        "modified": "2026-01-01 06:48:04.940534",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-83' in filename",
+        "Description words: email, access, denial, intent"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-84",
+        "Description": "Master Video Evidence Log Summary",
+        "Date": "2024-12-09",
+        "Keywords": "master video evidence log summary assault violence",
+        "File Type": "pdf",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-84_Master Video Evidence Log Summary.pdf",
+        "name": "EXHIBIT_A-84_Master Video Evidence Log Summary.pdf",
+        "size": 63676,
+        "modified": "2025-11-25 15:38:24.562753",
+        "extension": ".pdf"
+      },
+      "score": 155.0,
+      "reasons": [
+        "Exhibit number 'A-84' in filename",
+        "Description words: master, video, evidence, summary",
+        "File type match: .pdf"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-85",
+        "Description": "Master Video Evidence Log Summary",
+        "Date": "2024-12-09",
+        "Keywords": "master video evidence log summary assault violence",
+        "File Type": "pdf",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-85_Master Video Evidence Log Summary.jpeg",
+        "name": "EXHIBIT_A-85_Master Video Evidence Log Summary.jpeg",
+        "size": 153076,
+        "modified": "2026-01-01 06:48:07.775915",
+        "extension": ".jpeg"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-85' in filename",
+        "Description words: master, video, evidence, summary"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-86",
+        "Description": "Master Video Evidence Log Summary",
+        "Date": "2024-12-09",
+        "Keywords": "master video evidence log summary assault violence",
+        "File Type": "pdf",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-86_Master Video Evidence Log Summary",
+        "name": "EXHIBIT_A-86_Master Video Evidence Log Summary",
+        "size": 291,
+        "modified": "2024-12-19 04:55:44",
+        "extension": ""
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-86' in filename",
+        "Description words: master, video, evidence, summary"
+      ],
+      "status": "FOUND"
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-87",
+        "Description": "Master Video Evidence Log Summary",
+        "Date": "2024-12-09",
+        "Keywords": "master video evidence log summary assault violence",
+        "File Type": "pdf",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "file": {
+        "path": "C:\\Users\\dalec\\OneDrive\\Desktop\\Exhibits\\EXHIBIT_A-87_Master Video Evidence Log Summary.png",
+        "name": "EXHIBIT_A-87_Master Video Evidence Log Summary.png",
+        "size": 620161,
+        "modified": "2025-11-04 06:55:19.515894",
+        "extension": ".png"
+      },
+      "score": 140.0,
+      "reasons": [
+        "Exhibit number 'A-87' in filename",
+        "Description words: master, video, evidence, summary"
+      ],
+      "status": "FOUND"
+    }
+  ],
+  "missing_exhibits": [
+    {
+      "exhibit": {
+        "Exhibit Number": "A-18",
+        "Description": "Video Evidence - Dec 9 Assault",
+        "Date": "2024-12-09",
+        "Keywords": "video evidence december assault violence",
+        "File Type": "mp4",
+        "Category": "PERJURY",
+        "Priority": "10"
+      },
+      "status": "MISSING",
+      "best_score": 25.0
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-23",
+        "Description": "Bank Records - Rent Non-Payment",
+        "Date": "2025-06-01",
+        "Keywords": "bank records rent non payment statement",
+        "File Type": "pdf",
+        "Category": "FINANCIAL",
+        "Priority": "8"
+      },
+      "status": "MISSING",
+      "best_score": 25.0
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-27",
+        "Description": "Access Denial Documentation Log",
+        "Date": "2025-06-04",
+        "Keywords": "access denial documentation log 129 days sundays",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "10"
+      },
+      "status": "MISSING",
+      "best_score": 25.0
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-58",
+        "Description": "Formula Assistance Offer - Coupon Drop-off",
+        "Date": "2024-12-19",
+        "Keywords": "formula assistance offer coupon dropoff support",
+        "File Type": "jpg",
+        "Category": "INTEGRITY",
+        "Priority": "6"
+      },
+      "status": "MISSING",
+      "best_score": 15.0
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-59",
+        "Description": "Pre-Birth Drug Use Admission - Wouldn't mind a puff",
+        "Date": "2024-11-08",
+        "Keywords": "pre birth drug use admission puff pregnancy",
+        "File Type": "jpg",
+        "Category": "PERJURY",
+        "Priority": "9"
+      },
+      "status": "MISSING",
+      "best_score": 25.0
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-62",
+        "Description": "Co-Parenting Communication Sample",
+        "Date": "2024-12-19",
+        "Keywords": "coparenting communication sample professional engagement",
+        "File Type": "jpg",
+        "Category": "INTEGRITY",
+        "Priority": "6"
+      },
+      "status": "MISSING",
+      "best_score": 25.0
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-65",
+        "Description": "Father's Day Access Denial",
+        "Date": "2025-06-15",
+        "Keywords": "fathers day access denial prevention contact",
+        "File Type": "pdf",
+        "Category": "OBSTRUCTION",
+        "Priority": "8"
+      },
+      "status": "MISSING",
+      "best_score": 25.0
+    },
+    {
+      "exhibit": {
+        "Exhibit Number": "A-76",
+        "Description": "Photos of Respondent Facial Injuries",
+        "Date": "2024-12-10",
+        "Keywords": "photos respondent facial injuries violence evidence",
+        "File Type": "jpg",
+        "Category": "PERJURY",
+        "Priority": "9"
+      },
+      "status": "MISSING",
+      "best_score": 25.0
+    }
+  ]
+}

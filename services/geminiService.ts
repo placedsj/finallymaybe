@@ -1,6 +1,7 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 import { Exhibit, ExhibitCategory } from "../types";
+import { cacheService } from "./cache";
 
 // Schema for structured exhibit extraction
 const EXHIBIT_SCHEMA = {
@@ -37,45 +38,131 @@ const FORENSIC_LIST_SCHEMA = {
 };
 
 // Helper to create a new GoogleGenAI instance right before making an API call
-const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Use import.meta.env for Vite, fallback to empty string if not available
+const getAPIKey = () => {
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    return import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_API_KEY || '';
+  }
+  return '';
+};
+
+const getAI = () => {
+  const apiKey = getAPIKey();
+  if (!apiKey) {
+    console.warn('No Gemini API key found. AI features will be limited.');
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 /**
  * Processes an uploaded file for forensic evidence extraction.
  */
 export const processExhibitFile = async (
-  base64Data: string, 
-  mimeType: string, 
+  base64Data: string,
+  mimeType: string,
   fileName: string,
   lastExhibitNum: number
 ): Promise<Partial<Exhibit>> => {
-  const ai = getAI();
-  const model = 'gemini-3-flash-preview';
-  
-  const systemInstruction = `Act as a Senior Litigator for Case FDSJ-739-24.
-  Analyze evidence for forensic relevance. 
-  BE CONCISE. Use clinical legal language.
-  1. Map to NB FSA s.17.
-  2. Dec 9 or Sept 2025 incidents = CRITICAL.
-  3. Frame as Applicant criminal instability vs Craig's stability.
-  4. Perjury: Detail direct contradictions.`;
+  const apiKey = getAPIKey();
 
-  const response = await ai.models.generateContent({
-    model,
-    contents: {
-      parts: [
-        { inlineData: { data: base64Data, mimeType } },
-        { text: `Analyze the file: ${fileName}. Reference last exhibit: ${lastExhibitNum}.` }
-      ]
-    },
-    config: {
-      systemInstruction,
-      responseMimeType: "application/json",
-      responseSchema: EXHIBIT_SCHEMA
+  // 1. Compute Hash
+  const hash = await computeFileHash(base64Data);
+  const cacheKey = `exhibit_analysis:${hash}`;
+
+  // 2. Check Cache
+  const cached = await cacheService.get<Partial<Exhibit>>(cacheKey);
+  if (cached) {
+    console.log('Cache hit for exhibit:', fileName);
+    return cached;
+  }
+
+  // Fallback mode: No API key, use basic extraction from filename
+  if (!apiKey) {
+    console.log('Using fallback mode (no API key) for:', fileName);
+    return {
+      exhibitNumber: `${lastExhibitNum + 1}A`,
+      date: new Date().toLocaleDateString(),
+      category: 'INTEGRITY' as any,
+      description: fileName,
+      legalRelevance: 'Evidence to be reviewed',
+      priority: 5,
+      witnesses: [],
+      bestInterestMapping: {
+        factor: 'To be determined',
+        legalArgument: 'Evidence requires manual review and categorization.'
+      },
+      reflection: '',
+      perjuryFlag: false
+    };
+  }
+
+  // AI mode: Use Gemini for analysis
+  try {
+    const ai = getAI();
+    const model = 'gemini-2.0-flash-exp';
+
+    const systemInstruction = `Act as a Senior Litigator for Case FDSJ-739-24.
+    Analyze evidence for forensic relevance. 
+    BE CONCISE. Use clinical legal language.
+    1. Map to NB FSA s.17.
+    2. Dec 9 or Sept 2025 incidents = CRITICAL.
+    3. Frame as Applicant criminal instability vs Craig's stability.
+    4. Perjury: Detail direct contradictions.`;
+
+    const response = await ai.models.generateContent({
+      model,
+      contents: {
+        parts: [
+          { inlineData: { data: base64Data, mimeType } },
+          { text: `Analyze the file: ${fileName}. Reference last exhibit: ${lastExhibitNum}.` }
+        ]
+      },
+      config: {
+        systemInstruction,
+        responseMimeType: "application/json",
+        responseSchema: EXHIBIT_SCHEMA
+      }
+    });
+
+    const result = JSON.parse(response.text || '{}');
+
+    // 3. Cache Result (Indefinite or long TTL since content doesn't change)
+    if (result && result.description) { // Verify valid result before caching
+      await cacheService.set(cacheKey, result, 1000 * 60 * 60 * 24 * 30); // 30 days
     }
-  });
 
-  return JSON.parse(response.text || '{}');
+    return result;
+  } catch (error) {
+    console.error('AI processing failed, using fallback:', error);
+    // Fallback if AI fails
+    return {
+      exhibitNumber: `${lastExhibitNum + 1}A`,
+      date: new Date().toLocaleDateString(),
+      category: 'INTEGRITY' as any,
+      description: fileName,
+      legalRelevance: 'Evidence uploaded - AI processing failed',
+      priority: 5,
+      witnesses: [],
+      bestInterestMapping: {
+        factor: 'To be determined',
+        legalArgument: 'Evidence requires manual review.'
+      },
+      reflection: '',
+      perjuryFlag: false
+    };
+  }
 };
+
+async function computeFileHash(base64Data: string): Promise<string> {
+  const raw = atob(base64Data);
+  const uint8Array = new Uint8Array(raw.length);
+  for (let i = 0; i < raw.length; i++) {
+    uint8Array[i] = raw.charCodeAt(i);
+  }
+  const hashBuffer = await crypto.subtle.digest('SHA-256', uint8Array);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 /**
  * Generates a formal affidavit draft.
@@ -83,7 +170,7 @@ export const processExhibitFile = async (
 export const generateAffidavitDraft = async (exhibits: Exhibit[], focus: 'SAFETY' | 'CONTEMPT' | 'STABILITY' | 'GENERAL' = 'GENERAL'): Promise<string> => {
   const ai = getAI();
   const model = 'gemini-3-flash-preview';
-  const context = exhibits.map(e => 
+  const context = exhibits.map(e =>
     `EXHIBIT ${e.exhibitNumber} [${e.date}]: ${e.description}. Relevance: ${e.legalRelevance}.`
   ).join('\n');
 
@@ -104,7 +191,7 @@ export const generateAffidavitDraft = async (exhibits: Exhibit[], focus: 'SAFETY
 export const analyzeForPerjury = async (applicantStatement: string, exhibits: Exhibit[]) => {
   const ai = getAI();
   const model = 'gemini-3-flash-preview';
-  
+
   const context = exhibits
     .map(ex => `EXHIBIT ${ex.exhibitNumber}: ${ex.description} (${ex.date})`)
     .join('\n');
@@ -116,7 +203,7 @@ export const analyzeForPerjury = async (applicantStatement: string, exhibits: Ex
       systemInstruction: "Forensic Perjury Analyst. Identify direct contradictions. Be blunt. Use bullet points for: Claim, Counter-Evidence, Risk Level."
     }
   });
-  
+
   return response.text;
 };
 
@@ -126,7 +213,7 @@ export const analyzeForPerjury = async (applicantStatement: string, exhibits: Ex
 export const analyzeLegalForensics = async (text: string): Promise<Partial<Exhibit>[]> => {
   const ai = getAI();
   const model = 'gemini-3-flash-preview';
-  
+
   const response = await ai.models.generateContent({
     model,
     contents: `EXTRACT INCIDENTS:\n${text}`,

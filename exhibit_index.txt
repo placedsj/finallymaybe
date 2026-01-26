@@ -1,0 +1,283 @@
+EXHIBIT INDEX - SCHULZ V. RYAN (FDSJ 739-24)
+================================================================================
+
+Exhibit A-1
+  Description: Photograph of Craig Schulz's black eye following assault
+  Date: 2024-11-19
+  Category: SAFETY | Priority: 10
+  Legal Significance: Physical evidence of domestic violence victim status
+  Status: Original - Photograph
+--------------------------------------------------------------------------------
+
+Exhibit A-11
+  Description: Communication logs between Respondent and Jane Ryan
+  Date: 2024-12-10
+  Category: COMMUNICATION | Priority: 7
+  Legal Significance: Documents proactive efforts to ensure child's safety with family
+  Status: Original - Log
+--------------------------------------------------------------------------------
+
+Exhibit A-12
+  Description: Interim Order on Consent granting parenting time
+  Date: 2025-03-22
+  Category: OBSTRUCTION | Priority: 10
+  Legal Significance: Establishes legal parenting time Applicant has systematically breached
+  Status: Copy - Court Record
+--------------------------------------------------------------------------------
+
+Exhibit A-13
+  Description: Comprehensive log of 105+ consecutive days of denied access
+  Date: 2025-06-04
+  Category: OBSTRUCTION | Priority: 10
+  Legal Significance: Proves systematic parental alienation and contempt of court
+  Status: Original - Log
+--------------------------------------------------------------------------------
+
+Exhibit A-14
+  Description: Log of 51 unanswered calls and June 18 'October' email
+  Date: 2025-06-18
+  Category: OBSTRUCTION | Priority: 10
+  Legal Significance: Proves deliberate intent to block access until final hearing
+  Status: Original - Screenshot/Log
+--------------------------------------------------------------------------------
+
+Exhibit A-17
+  Description: Video thumbnail/summary of Nov 19 assault with infant present
+  Date: 2024-11-19
+  Category: SAFETY | Priority: 10
+  Legal Significance: Captures violence and endangerment while Respondent held child
+  Status: Original - Summary/Thumbnail
+--------------------------------------------------------------------------------
+
+Exhibit A-18
+  Description: Video thumbnail/summary of Dec 9 'Where's my drugs' incident
+  Date: 2024-12-09
+  Category: SAFETY | Priority: 10
+  Legal Significance: Proves drug-seeking rage and assault with child in arms
+  Status: Original - Summary/Thumbnail
+--------------------------------------------------------------------------------
+
+Exhibit A-2
+  Description: Text message from Applicant admitting to hitting Respondent
+  Date: 2024-11-21
+  Category: PERJURY | Priority: 10
+  Legal Significance: Irrefutable admission of violence; refutes Applicant's abuse claims
+  Status: Original - Screenshot
+--------------------------------------------------------------------------------
+
+Exhibit A-21
+  Description: Financial records of Applicant's substance-related mismanagement
+  Date: 2024-07-01
+  Category: FINANCIAL | Priority: 9
+  Legal Significance: Links household fund diversion to suspected drug purchases
+  Status: Original - Bank Record
+--------------------------------------------------------------------------------
+
+Exhibit A-22
+  Description: Evidence of e-transfers from Applicant to alleged dealer Tony Baker
+  Date: 2024-08-01
+  Category: FINANCIAL | Priority: 10
+  Legal Significance: Direct financial link to illicit substance acquisition
+  Status: Original - Screenshot
+--------------------------------------------------------------------------------
+
+Exhibit A-23
+  Description: Handwritten notes acknowledging smoking and lack of income
+  Date: Unknown
+  Category: INTEGRITY | Priority: 9
+  Legal Significance: Admission of substance use during breastfeeding and financial instability
+  Status: Original - Document
+--------------------------------------------------------------------------------
+
+Exhibit A-25
+  Description: Police report confirming Respondent escorted for safety
+  Date: 2024-08-05
+  Category: SAFETY | Priority: 8
+  Legal Significance: Documents early pattern of Applicant's volatility requiring intervention
+  Status: Original - Government Record
+--------------------------------------------------------------------------------
+
+Exhibit A-26
+  Description: Police report confirming Respondent as victim of assault
+  Date: 2024-11-19
+  Category: SAFETY | Priority: 10
+  Legal Significance: Third-party corroboration refuting Applicant's abuse claims
+  Status: Original - Government Record
+--------------------------------------------------------------------------------
+
+Exhibit A-3
+  Description: Summary of events regarding mirror shattering incident
+  Date: 2024-11-30
+  Category: SAFETY | Priority: 8
+  Legal Significance: Documents pattern of aggressive behavior and property damage
+  Status: Original - Document
+--------------------------------------------------------------------------------
+
+Exhibit A-33
+  Description: Texts evidencing Applicant's relationship with parolee Cole Brook
+  Date: 2024-10-31
+  Category: SAFETY | Priority: 9
+  Legal Significance: Proves high-risk associations in the home where child resides
+  Status: Original - Screenshot
+--------------------------------------------------------------------------------
+
+Exhibit A-4
+  Description: Photographs documenting Harper's severe diaper rash and healing
+  Date: 2024-11-17
+  Category: SAFETY | Priority: 9
+  Legal Significance: Evidence of neglect under Applicant and recovery under Respondent
+  Status: Original - Photograph
+--------------------------------------------------------------------------------
+
+Exhibit A-45
+  Description: Text: 'Leave it in the mailbox I don't want Craig to bitch'
+  Date: Unknown
+  Category: SAFETY | Priority: 10
+  Legal Significance: Direct evidence of clandestine drug acquisition in the home
+  Status: Original - Screenshot
+--------------------------------------------------------------------------------
+
+Exhibit A-47
+  Description: Motion for Disclosure of Applicant's financial records
+  Date: 2025-02-12
+  Category: FINANCIAL | Priority: 8
+  Legal Significance: Formal legal request to expose drug-related financial patterns
+  Status: Copy - Court Record
+--------------------------------------------------------------------------------
+
+Exhibit A-48
+  Description: Motion to Compel Medical Records (Prenatal/Postnatal)
+  Date: 2025-02-12
+  Category: SAFETY | Priority: 9
+  Legal Significance: Seeks truth regarding meth exposure during pregnancy
+  Status: Copy - Court Record
+--------------------------------------------------------------------------------
+
+Exhibit A-5
+  Description: Meticulous records of Harper's weight and milestones
+  Date: 2024-11-12
+  Category: INTEGRITY | Priority: 8
+  Legal Significance: Demonstrates Respondent's consistent and proactive parental care
+  Status: Original - Log
+--------------------------------------------------------------------------------
+
+Exhibit A-6
+  Description: Text from Applicant inviting Respondent for sexual intercourse
+  Date: 2025-02-09
+  Category: INTEGRITY | Priority: 9
+  Legal Significance: Contradicts Applicant's sworn claims of fear and desire for no contact
+  Status: Original - Screenshot
+--------------------------------------------------------------------------------
+
+Exhibit A-60
+  Description: Veterinary Invoice for Luna ($531.28 paid by Respondent)
+  Date: 2025-01-09
+  Category: FINANCIAL | Priority: 6
+  Legal Significance: Rebuts claim that Applicant cared for Respondent's pets
+  Status: Original - Invoice
+--------------------------------------------------------------------------------
+
+Exhibit A-61
+  Description: Birth Certificate Long-Form purchase confirmation
+  Date: 2025-01-01
+  Category: INTEGRITY | Priority: 7
+  Legal Significance: Proves Respondent's proactive steps to secure child's identity
+  Status: Original - Receipt
+--------------------------------------------------------------------------------
+
+Exhibit A-63
+  Description: Formal Complaint against Social Worker Jacqueline Gallant
+  Date: 2025-02-08
+  Category: INTEGRITY | Priority: 10
+  Legal Significance: Documents systemic conflict of interest and failure to protect child
+  Status: Original - Document
+--------------------------------------------------------------------------------
+
+Exhibit A-7
+  Description: Communication logs and police wellness check records
+  Date: 2024-12-09
+  Category: OBSTRUCTION | Priority: 9
+  Legal Significance: Refutes claim of no updates; proves Applicant feared drug test
+  Status: Original - Government Record
+--------------------------------------------------------------------------------
+
+Exhibit A-8
+  Description: Photos and receipts for essential items purchased for Harper
+  Date: Unknown
+  Category: FINANCIAL | Priority: 7
+  Legal Significance: Proves Respondent provides necessities Applicant fails to supply
+  Status: Original - Receipts/Photos
+--------------------------------------------------------------------------------
+
+Exhibit A-9
+  Description: Screenshots of Applicant's account lockouts/numerical errors
+  Date: Unknown
+  Category: INTEGRITY | Priority: 6
+  Legal Significance: Supports claim of undisclosed disability impacting stability
+  Status: Original - Screenshot
+--------------------------------------------------------------------------------
+
+Exhibit K-1
+  Description: Photo of Applicant with propane torch and meth pipe
+  Date: 2025-05-21
+  Category: SAFETY | Priority: 10
+  Legal Significance: Smoking gun visual evidence of active methamphetamine use
+  Status: Original - Photograph
+--------------------------------------------------------------------------------
+
+Exhibit M-1
+  Description: Text Admission: 'I'm really sorry for hitting you Craig'
+  Date: 2024-11-21
+  Category: PERJURY | Priority: 10
+  Legal Significance: Direct evidence Applicant lied about being the abuse victim
+  Status: Original - Screenshot
+--------------------------------------------------------------------------------
+
+Exhibit Q-1
+  Description: Saint John Police Interaction Log (Comprehensive)
+  Date: 2024-06-01
+  Category: INTEGRITY | Priority: 9
+  Legal Significance: Proves pattern of Respondent instigating police to document safety
+  Status: Original - Government Record
+--------------------------------------------------------------------------------
+
+Exhibit R-1
+  Description: Criminal Assault Charge Confirmation (SJPF 25-2390069)
+  Date: 2025-09-23
+  Category: SAFETY | Priority: 10
+  Legal Significance: Third-party verification of Applicant's criminal violence
+  Status: Original - Government Record
+--------------------------------------------------------------------------------
+
+Exhibit S-1
+  Description: FaceTime/Text Thread: The Nick Incident (Intoxicated Person)
+  Date: 2025-04-01
+  Category: SAFETY | Priority: 10
+  Legal Significance: Proves Applicant lied to hide intoxicated person near child in bath
+  Status: Original - Screenshot/Log
+--------------------------------------------------------------------------------
+
+Exhibit T-1
+  Description: Applicant's 'Negative - Dilute' drug test result
+  Date: 2025-01-29
+  Category: SAFETY | Priority: 10
+  Legal Significance: Suggests deliberate attempt to mask methamphetamine use
+  Status: Copy - Government Record
+--------------------------------------------------------------------------------
+
+Exhibit T-2
+  Description: Respondent's Clean 13-Panel drug test result
+  Date: 2025-01-31
+  Category: INTEGRITY | Priority: 9
+  Legal Significance: Scientifically proves Respondent's sobriety and parental fitness
+  Status: Original - Government Record
+--------------------------------------------------------------------------------
+
+Exhibit Z-1
+  Description: Log of 51 unanswered calls over 7-week period
+  Date: 2025-07-20
+  Category: OBSTRUCTION | Priority: 10
+  Legal Significance: Factual record of Applicant's absolute refusal to co-parent
+  Status: Original - Log
+--------------------------------------------------------------------------------
+
