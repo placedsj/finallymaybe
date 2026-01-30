@@ -122,4 +122,4 @@ if __name__ == '__main__':
     print("  GET /api/modules/<number>/exhibits - Exhibits for specific module")
     print("  GET /api/export/index - Export exhibit index")
     
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)

@@ -1,10 +1,7 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
-<<<<<<< HEAD
-import { Exhibit, ExhibitCategory } from "../types";
-import { cacheService } from "./cache";
-=======
 import { Exhibit, ExhibitCategory, CommunicationEntry } from "../types";
+import { cacheService } from "./cache";
 
 const COMM_LOG_SCHEMA = {
   type: Type.ARRAY,
@@ -21,7 +18,6 @@ const COMM_LOG_SCHEMA = {
     required: ["timestamp", "sender", "content", "platform"]
   }
 };
->>>>>>> d109056ace3c241e92cff73d6b7a7435eae5f18f
 
 const EXHIBIT_SCHEMA = {
   type: Type.OBJECT,
@@ -51,7 +47,6 @@ const EXHIBIT_SCHEMA = {
   required: ["exhibitNumber", "date", "category", "description", "legalRelevance", "priority", "witnesses", "bestInterestMapping", "reflection"]
 };
 
-<<<<<<< HEAD
 const FORENSIC_LIST_SCHEMA = {
   type: Type.ARRAY,
   items: EXHIBIT_SCHEMA
@@ -73,6 +68,17 @@ const getAI = () => {
   }
   return new GoogleGenAI({ apiKey });
 };
+
+async function computeFileHash(base64Data: string): Promise<string> {
+  const raw = atob(base64Data);
+  const uint8Array = new Uint8Array(raw.length);
+  for (let i = 0; i < raw.length; i++) {
+    uint8Array[i] = raw.charCodeAt(i);
+  }
+  const hashBuffer = await crypto.subtle.digest('SHA-256', uint8Array);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 /**
  * Processes an uploaded file for forensic evidence extraction.
@@ -119,7 +125,8 @@ export const processExhibitFile = async (
   // AI mode: Use Gemini for analysis
   try {
     const ai = getAI();
-    const model = 'gemini-2.0-flash-exp';
+    // Use specialized models from updated branch
+    const model = 'gemini-3-pro-preview';
 
     const systemInstruction = `Act as a Senior Litigator for Case FDSJ-739-24.
     Analyze evidence for forensic relevance. 
@@ -173,56 +180,11 @@ export const processExhibitFile = async (
   }
 };
 
-async function computeFileHash(base64Data: string): Promise<string> {
-  const raw = atob(base64Data);
-  const uint8Array = new Uint8Array(raw.length);
-  for (let i = 0; i < raw.length; i++) {
-    uint8Array[i] = raw.charCodeAt(i);
-  }
-  const hashBuffer = await crypto.subtle.digest('SHA-256', uint8Array);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-/**
- * Generates a formal affidavit draft.
- */
-export const generateAffidavitDraft = async (exhibits: Exhibit[], focus: 'SAFETY' | 'CONTEMPT' | 'STABILITY' | 'GENERAL' = 'GENERAL'): Promise<string> => {
-  const ai = getAI();
-  const model = 'gemini-3-flash-preview';
-  const context = exhibits.map(e =>
-    `EXHIBIT ${e.exhibitNumber} [${e.date}]: ${e.description}. Relevance: ${e.legalRelevance}.`
-  ).join('\n');
-=======
-// Always create a fresh instance right before usage to ensure up-to-date configuration
-const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY });
-
-export const processExhibitFile = async (base64Data: string, mimeType: string, fileName: string, lastExhibitNum: number): Promise<Partial<Exhibit>> => {
-  const ai = getAI();
-  const response = await ai.models.generateContent({
-    // Complex multimodal legal analysis requires high reasoning capabilities
-    model: 'gemini-3-pro-preview',
-    contents: {
-      parts: [
-        { inlineData: { data: base64Data, mimeType } },
-        { text: `Analyze the file: ${fileName}. Reference last exhibit: ${lastExhibitNum}.` }
-      ]
-    },
-    config: {
-      systemInstruction: "Senior Litigator for Case FDSJ-739-24. Map to NB FSA s.17.",
-      responseMimeType: "application/json",
-      responseSchema: EXHIBIT_SCHEMA
-    }
-  });
-  return JSON.parse(response.text || '{}');
-};
-
 export const extractCommunicationLog = async (data: string, mimeType: string): Promise<CommunicationEntry[]> => {
   const ai = getAI();
   const isImage = mimeType.startsWith('image/');
   // Use specialized image model for vision tasks, flash for basic text extraction
   const model = isImage ? 'gemini-2.5-flash-image' : 'gemini-3-flash-preview';
->>>>>>> d109056ace3c241e92cff73d6b7a7435eae5f18f
 
   const response = await ai.models.generateContent({
     model,
@@ -260,36 +222,18 @@ export const generateAffidavitDraft = async (exhibits: Exhibit[], focus: string 
 
 export const analyzeForPerjury = async (applicantStatement: string, exhibits: Exhibit[]) => {
   const ai = getAI();
-<<<<<<< HEAD
-  const model = 'gemini-3-flash-preview';
-
-  const context = exhibits
-    .map(ex => `EXHIBIT ${ex.exhibitNumber}: ${ex.description} (${ex.date})`)
-    .join('\n');
-
-=======
   const context = exhibits.map(ex => `EXHIBIT ${ex.exhibitNumber}: ${ex.description}`).join('\n');
->>>>>>> d109056ace3c241e92cff73d6b7a7435eae5f18f
   const response = await ai.models.generateContent({
     // Forensic perjury detection is a complex reasoning task
     model: 'gemini-3-pro-preview',
     contents: `Analyze Statement:\n"${applicantStatement}"\n\nAgainst Evidence:\n${context}`,
     config: { systemInstruction: "Forensic Perjury Analyst. Identify contradictions." }
   });
-<<<<<<< HEAD
-
-=======
->>>>>>> d109056ace3c241e92cff73d6b7a7435eae5f18f
   return response.text;
 };
 
 export const analyzeLegalForensics = async (text: string): Promise<any[]> => {
   const ai = getAI();
-<<<<<<< HEAD
-  const model = 'gemini-3-flash-preview';
-
-=======
->>>>>>> d109056ace3c241e92cff73d6b7a7435eae5f18f
   const response = await ai.models.generateContent({
     // Extraction of structured data from unstructured transcripts is a complex task
     model: 'gemini-3-pro-preview',
@@ -297,7 +241,7 @@ export const analyzeLegalForensics = async (text: string): Promise<any[]> => {
     config: {
       systemInstruction: "Senior Legal Forensics Expert.",
       responseMimeType: "application/json",
-      responseSchema: { type: Type.ARRAY, items: EXHIBIT_SCHEMA }
+      responseSchema: FORENSIC_LIST_SCHEMA
     }
   });
   return JSON.parse(response.text || '[]');

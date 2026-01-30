@@ -2,6 +2,7 @@
 """
 Database Optimization Script for FDSJ-739 Evidence Platform
 Optimizes SQLite database with indexing, analysis, and defragmentation
+Targets the active 'evidence.db'
 """
 
 import sqlite3
@@ -9,7 +10,7 @@ import os
 from pathlib import Path
 from datetime import datetime
 
-DB_PATH = "FDSJ739_EVIDENCE.db"
+DB_PATH = "evidence.db"
 
 def get_db_connection():
     """Create database connection"""
@@ -20,6 +21,8 @@ def get_db_connection():
 
 def get_db_size():
     """Get database file size in MB"""
+    if not os.path.exists(DB_PATH):
+        return 0
     size_bytes = os.path.getsize(DB_PATH)
     return size_bytes / (1024 * 1024)
 
@@ -27,14 +30,19 @@ def create_indexes(conn):
     """Create strategic indexes for performance"""
     cursor = conn.cursor()
     
+    # Indexes based on evidence_database.py schema and usage
     indexes = [
-        ("exhibits", ["category", "priority", "date"]),
+        # Basic filtering
+        ("exhibits", ["category"]),
+        ("exhibits", ["priority"]),
         ("exhibits", ["date"]),
-        ("ocr_content", ["exhibit_id"]),
-        ("ocr_content", ["filename"]),
-        ("ocr_content", ["sender"]),
-        ("ocr_content", ["recipient"]),
-        ("ocr_content", ["processed_date"]),
+
+        # Sorting optimization (priority DESC, exhibit_number)
+        ("exhibits", ["priority", "exhibit_number"]),
+
+        # Module mapping lookups
+        ("module_mappings", ["module_number"]),
+        ("module_mappings", ["exhibit_number"]),
     ]
     
     created = 0
@@ -43,6 +51,12 @@ def create_indexes(conn):
         index_name = f"idx_{table}_{'_'.join(columns)}"
         
         try:
+            # Check if table exists first
+            cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table}'")
+            if not cursor.fetchone():
+                print(f"⚠️  Table {table} does not exist, skipping index {index_name}")
+                continue
+
             cursor.execute(f"""
             CREATE INDEX IF NOT EXISTS {index_name} 
             ON {table}({col_str})
@@ -69,17 +83,16 @@ def vacuum_database(conn):
     conn.commit()
     print("✓ Database vacuumed (defragmented)")
 
-def check_fts_status(conn):
-    """Verify FTS5 table status"""
+def check_integrity(conn):
+    """Check database integrity"""
     cursor = conn.cursor()
-    
-    try:
-        cursor.execute("SELECT count(*) FROM ocr_content_fts")
-        fts_count = cursor.fetchone()[0]
-        print(f"✓ FTS5 Index: {fts_count} documents indexed")
+    cursor.execute("PRAGMA integrity_check")
+    result = cursor.fetchone()[0]
+    if result == "ok":
+        print("✓ Database integrity check passed")
         return True
-    except sqlite3.OperationalError:
-        print("⚠️  FTS5 table not found or corrupted")
+    else:
+        print(f"❌ Database integrity check failed: {result}")
         return False
 
 def get_table_stats(conn):
@@ -94,9 +107,12 @@ def get_table_stats(conn):
     """)
     
     for table_name, in cursor.fetchall():
-        cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
-        count = cursor.fetchone()[0]
-        stats[table_name] = count
+        try:
+            cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
+            count = cursor.fetchone()[0]
+            stats[table_name] = count
+        except sqlite3.Error:
+            pass
     
     return stats
 
@@ -104,6 +120,7 @@ def main():
     """Main optimization routine"""
     print("=" * 50)
     print("FDSJ-739 Database Optimization")
+    print(f"Target: {DB_PATH}")
     print("=" * 50)
     
     # Connect to database
@@ -124,10 +141,10 @@ def main():
         print("\n⚙️  Optimizing...")
         
         idx_count = create_indexes(conn)
-        print(f"  Created/verified {idx_count} indexes")
+        print(f"  Verified/Created {idx_count} indexes")
         
         analyze_database(conn)
-        check_fts_status(conn)
+        check_integrity(conn)
         vacuum_database(conn)
         
         # Final stats

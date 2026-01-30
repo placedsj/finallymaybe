@@ -57,11 +57,33 @@ const App: React.FC = () => {
       setIsLoading(true);
       try {
         console.log('Fetching exhibits from API...');
-        const data = await apiClient.get<Exhibit[]>('/api/exhibits', {
+        const apiData = await apiClient.get<any[]>('/api/exhibits', {
           params: { limit: 1000 }
         });
-        console.log(`Loaded ${data.length} exhibits from API.`);
-        setExhibits(data);
+
+        // Map API snake_case to Frontend camelCase
+        const mappedData: Exhibit[] = apiData.map(item => ({
+          id: String(item.id),
+          exhibitNumber: item.exhibit_number,
+          description: item.description,
+          date: item.date || 'Unknown',
+          category: item.category as ExhibitCategory,
+          priority: item.priority,
+          legalRelevance: item.legal_significance || '',
+          fileType: item.file_type || 'unknown',
+          status: item.status || 'processed',
+          keywords: item.keywords,
+
+          // Default values for fields not yet in DB
+          fileUrl: '',
+          fileName: `${item.exhibit_number}.${item.file_type || 'dat'}`,
+          witnesses: [],
+          caption: '',
+          perjuryFlag: item.category === 'PERJURY' || item.priority >= 9
+        }));
+
+        console.log(`Loaded ${mappedData.length} exhibits from API.`);
+        setExhibits(mappedData);
 
         // Merge locally stored uploads if any (optional, depending on if we want to sync these back to server later)
         const storedExhibits = await db.exhibits.toArray();
@@ -435,13 +457,9 @@ const App: React.FC = () => {
       <div className="print:hidden">
         <LegalChatbot exhibits={exhibits} />
       </div>
-<<<<<<< HEAD
-
-=======
       
       <Analytics />
       
->>>>>>> d109056ace3c241e92cff73d6b7a7435eae5f18f
       <style>{`
         .shadow-neon { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
         @keyframes progress {
