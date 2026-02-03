@@ -1,20 +1,18 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Exhibit, ExhibitCategory } from '../types';
 import { CASE_DEFAULTS, CATEGORY_COLORS } from '../constants';
-import {
-  BookOpen,
-  Printer,
-  ShieldCheck,
-  FileText,
-  Download,
+import { 
+  BookOpen, 
+  Printer, 
+  ShieldCheck, 
+  FileText, 
+  Download, 
   CheckCircle2,
   AlertCircle,
   Clock,
   Scale,
-  Zap,
-  CheckSquare,
-  Square
+  Zap
 } from 'lucide-react';
 
 interface ExhibitBookProps {
@@ -24,28 +22,7 @@ interface ExhibitBookProps {
 
 const ExhibitBook: React.FC<ExhibitBookProps> = ({ exhibits, affidavitDraft }) => {
   const categories = Object.keys(CATEGORY_COLORS) as ExhibitCategory[];
-  const [selectedExhibits, setSelectedExhibits] = useState<Set<string>>(new Set(exhibits.map(e => e.id)));
-
-  const toggleExhibit = (id: string) => {
-    const newSelected = new Set(selectedExhibits);
-    if (newSelected.has(id)) {
-      newSelected.delete(id);
-    } else {
-      newSelected.add(id);
-    }
-    setSelectedExhibits(newSelected);
-  };
-
-  const selectAll = () => {
-    setSelectedExhibits(new Set(exhibits.map(e => e.id)));
-  };
-
-  const selectNone = () => {
-    setSelectedExhibits(new Set());
-  };
-
-  const filteredExhibits = exhibits.filter(ex => selectedExhibits.has(ex.id));
-
+  
   const handlePrint = () => {
     window.print();
   };
@@ -65,36 +42,16 @@ const ExhibitBook: React.FC<ExhibitBookProps> = ({ exhibits, affidavitDraft }) =
             </div>
             <h2 className="text-5xl font-black tracking-tighter text-white italic uppercase mb-4">The Exhibit Book</h2>
             <p className="text-slate-400 font-medium text-lg max-w-xl leading-relaxed">
-              Consolidated formal record for <span className="text-blue-500 font-black">{CASE_DEFAULTS.caseNumber}</span>.
+              Consolidated formal record for <span className="text-blue-500 font-black">{CASE_DEFAULTS.caseNumber}</span>. 
               Formatted for direct judicial submission via New Brunswick Family Court protocols.
             </p>
-            <div className="mt-6 flex items-center gap-4">
-              <div className="bg-blue-600/10 border border-blue-600/30 rounded-2xl px-6 py-3">
-                <span className="text-blue-500 font-black text-sm">
-                  {selectedExhibits.size} of {exhibits.length} Exhibits Selected
-                </span>
-              </div>
-              <button
-                onClick={selectAll}
-                className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all"
-              >
-                Select All
-              </button>
-              <button
-                onClick={selectNone}
-                className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all"
-              >
-                Select None
-              </button>
-            </div>
           </div>
-          <button
+          <button 
             onClick={handlePrint}
-            disabled={selectedExhibits.size === 0}
-            className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-6 rounded-[2rem] font-black text-xs uppercase tracking-widest flex items-center gap-4 transition-all shadow-2xl shadow-blue-600/20 active:scale-95 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-6 rounded-[2rem] font-black text-xs uppercase tracking-widest flex items-center gap-4 transition-all shadow-2xl shadow-blue-600/20 active:scale-95 whitespace-nowrap"
           >
             <Printer size={20} />
-            Generate PDF Bundle ({selectedExhibits.size})
+            Generate PDF Bundle
           </button>
         </div>
       </div>
@@ -114,24 +71,24 @@ const ExhibitBook: React.FC<ExhibitBookProps> = ({ exhibits, affidavitDraft }) =
           </div>
           <div className="grid grid-cols-2 gap-20 text-left w-full max-w-3xl mx-auto border-t-2 border-slate-200 pt-20">
             <div className="space-y-6">
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Court Jurisdiction</p>
-                <p className="text-lg font-black">{CASE_DEFAULTS.court}</p>
-              </div>
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Statutory Framework</p>
-                <p className="text-lg font-black">{CASE_DEFAULTS.act}</p>
-              </div>
+               <div>
+                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Court Jurisdiction</p>
+                 <p className="text-lg font-black">{CASE_DEFAULTS.court}</p>
+               </div>
+               <div>
+                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Statutory Framework</p>
+                 <p className="text-lg font-black">{CASE_DEFAULTS.act}</p>
+               </div>
             </div>
             <div className="space-y-6">
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Case Reference</p>
-                <p className="text-3xl font-black text-blue-600 print:text-black">{CASE_DEFAULTS.caseNumber}</p>
-              </div>
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Parties</p>
-                <p className="text-lg font-black italic">{CASE_DEFAULTS.parties}</p>
-              </div>
+               <div>
+                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Case Reference</p>
+                 <p className="text-3xl font-black text-blue-600 print:text-black">{CASE_DEFAULTS.caseNumber}</p>
+               </div>
+               <div>
+                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Parties</p>
+                 <p className="text-lg font-black italic">{CASE_DEFAULTS.parties}</p>
+               </div>
             </div>
           </div>
           <div className="mt-auto text-[10px] font-mono opacity-50">
@@ -175,17 +132,11 @@ const ExhibitBook: React.FC<ExhibitBookProps> = ({ exhibits, affidavitDraft }) =
                     <h4 className="text-2xl font-black text-blue-500 uppercase tracking-tighter print:text-black">{cat}</h4>
                     <div className="h-px flex-1 bg-white/5 print:bg-black/10"></div>
                   </div>
-
+                  
                   <div className="space-y-6">
                     {catExhibits.map((ex, i) => (
                       <div key={ex.id} className="group flex items-baseline justify-between gap-8 py-3 border-b border-white/5 print:border-black/5 hover:bg-white/[0.02] transition-colors rounded-xl px-4 -mx-4">
                         <div className="flex items-baseline gap-8 overflow-hidden">
-                          <button
-                            onClick={() => toggleExhibit(ex.id)}
-                            className="print:hidden shrink-0 text-blue-500 hover:text-blue-400 transition-colors"
-                          >
-                            {selectedExhibits.has(ex.id) ? <CheckSquare size={20} /> : <Square size={20} />}
-                          </button>
                           <span className="font-mono text-sm font-black text-blue-500 w-24 shrink-0 print:text-black">#{ex.exhibitNumber}</span>
                           <div className="flex flex-col">
                             <span className="text-lg font-black text-slate-100 print:text-black tracking-tight">{ex.description}</span>
@@ -228,8 +179,8 @@ const ExhibitBook: React.FC<ExhibitBookProps> = ({ exhibits, affidavitDraft }) =
         {/* DETAILED EXHIBIT SHEETS */}
         <div className="print:block p-16 md:p-24 space-y-32 print:p-0">
           <h3 className="text-2xl font-black uppercase tracking-widest text-slate-500 border-b border-white/5 pb-6 mb-16 print:hidden">Evidence Deep-Scan Logs</h3>
-
-          {filteredExhibits.map((ex, idx) => (
+          
+          {exhibits.map((ex, idx) => (
             <div key={ex.id} className="page-break space-y-12 bg-slate-950/50 p-12 rounded-[3rem] border border-white/5 print:bg-white print:p-10 print:border-none print:shadow-none">
               <div className="flex justify-between items-start border-b border-white/5 pb-10 print:border-black print:pb-6">
                 <div className="space-y-4">
@@ -281,18 +232,18 @@ const ExhibitBook: React.FC<ExhibitBookProps> = ({ exhibits, affidavitDraft }) =
                       Evidence Metadata
                     </h5>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-slate-900 p-5 rounded-2xl border border-white/5 print:bg-slate-50 print:border-black/5">
-                        <span className="text-[8px] font-black text-slate-600 block mb-1 uppercase tracking-widest">Witness Verification</span>
-                        <p className="text-xs font-black text-white print:text-black truncate">{ex.witnesses.join(', ') || 'Self'}</p>
-                      </div>
-                      <div className="bg-slate-900 p-5 rounded-2xl border border-white/5 print:bg-slate-50 print:border-black/5">
-                        <span className="text-[8px] font-black text-slate-600 block mb-1 uppercase tracking-widest">Priority Index</span>
-                        <p className="text-xs font-black text-white print:text-black">{ex.priority}/10 - {ex.priority >= 8 ? 'CRITICAL' : 'RELEVANT'}</p>
-                      </div>
-                      <div className="col-span-2 bg-slate-900 p-5 rounded-2xl border border-white/5 print:bg-slate-50 print:border-black/5">
-                        <span className="text-[8px] font-black text-slate-600 block mb-1 uppercase tracking-widest">Digital SHA-256 Fingerprint</span>
-                        <p className="text-[10px] font-mono text-blue-400 print:text-black truncate">{ex.fileHash || '0x_UNVERIFIED_LOG'}</p>
-                      </div>
+                       <div className="bg-slate-900 p-5 rounded-2xl border border-white/5 print:bg-slate-50 print:border-black/5">
+                         <span className="text-[8px] font-black text-slate-600 block mb-1 uppercase tracking-widest">Witness Verification</span>
+                         <p className="text-xs font-black text-white print:text-black truncate">{ex.witnesses.join(', ') || 'Self'}</p>
+                       </div>
+                       <div className="bg-slate-900 p-5 rounded-2xl border border-white/5 print:bg-slate-50 print:border-black/5">
+                         <span className="text-[8px] font-black text-slate-600 block mb-1 uppercase tracking-widest">Priority Index</span>
+                         <p className="text-xs font-black text-white print:text-black">{ex.priority}/10 - {ex.priority >= 8 ? 'CRITICAL' : 'RELEVANT'}</p>
+                       </div>
+                       <div className="col-span-2 bg-slate-900 p-5 rounded-2xl border border-white/5 print:bg-slate-50 print:border-black/5">
+                         <span className="text-[8px] font-black text-slate-600 block mb-1 uppercase tracking-widest">Digital SHA-256 Fingerprint</span>
+                         <p className="text-[10px] font-mono text-blue-400 print:text-black truncate">{ex.fileHash || '0x_UNVERIFIED_LOG'}</p>
+                       </div>
                     </div>
                   </section>
 

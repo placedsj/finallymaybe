@@ -12,16 +12,14 @@ import LegalChatbot from './components/LegalChatbot';
 import SystemParams from './components/SystemParams';
 import ExhibitBook from './components/ExhibitBook';
 import CommunicationVault from './components/CommunicationVault'; // New import
-import { Analytics } from '@vercel/analytics/react';
 import { Exhibit, ExhibitCategory, Incident } from './types';
 import { CASE_DEFAULTS, CATEGORY_COLORS } from './constants';
 import { processExhibitFile, deepImageAnalysis } from './services/geminiService';
 import { db } from './services/db';
-import { apiClient } from './services/apiClient';
-import {
-  Plus,
-  Search,
-  Loader2,
+import { 
+  Plus, 
+  Search, 
+  Loader2, 
   ExternalLink,
   ClipboardList,
   Sparkles,
@@ -45,44 +43,18 @@ const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterCategory, setFilterCategory] = useState<ExhibitCategory | 'all'>('all');
   const [legacyMode, setLegacyMode] = useState(false);
-  const [toast, setToast] = useState<{ message: string, type: 'success' | 'error' } | null>(null);
+  const [toast, setToast] = useState<{message: string, type: 'success' | 'error'} | null>(null);
   const [committedAffidavit, setCommittedAffidavit] = useState<string>('');
-
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
-      setIsLoading(true);
       try {
-        console.log('Fetching exhibits from API...');
-        const data = await apiClient.get<Exhibit[]>('/api/exhibits', {
-          params: { limit: 1000 }
-        });
-        console.log(`Loaded ${data.length} exhibits from API.`);
-        setExhibits(data);
-
-        // Merge locally stored uploads if any (optional, depending on if we want to sync these back to server later)
         const storedExhibits = await db.exhibits.toArray();
-        if (storedExhibits.length > 0) {
-          // We might want to deduplicate here based on exhibitNumber
-          // For now, simple merge of "local only" items? 
-          // Actually, ideally everything goes to the backend. 
-          // Let's keep the merge for now to not lose user's local work during transition.
-          setExhibits(prev => {
-            const existingIds = new Set(prev.map(p => p.exhibitNumber));
-            const uniqueLocal = storedExhibits.filter(s => !existingIds.has(s.exhibitNumber));
-            return [...prev, ...uniqueLocal];
-          });
-        }
-
+        setExhibits(storedExhibits);
       } catch (err) {
-        console.error("Failed to load data from API:", err);
-        showToast("Failed to connect to Evidence Server. Is it running?", "error");
-        // Fallback or empty state handled by default state
-      } finally {
-        setIsLoading(false);
+        console.error("Failed to load IndexedDB data:", err);
       }
     };
     loadData();
@@ -123,22 +95,22 @@ const App: React.FC = () => {
           try {
             const currentCount = exhibits.length + newExhibits.length;
             const extracted = await processExhibitFile(
-              base64,
-              file.type,
-              file.name,
+              base64, 
+              file.type, 
+              file.name, 
               currentCount
             );
 
             let deepCaption = extracted.caption || '';
             if (file.type.startsWith('image/')) {
-              try {
-                const analysis = await deepImageAnalysis(base64, file.type);
-                if (analysis) deepCaption = analysis;
-              } catch (imageErr: any) {
-                console.warn('Multimodal image analysis failed', imageErr);
-              }
+               try {
+                 const analysis = await deepImageAnalysis(base64, file.type);
+                 if (analysis) deepCaption = analysis;
+               } catch (imageErr: any) {
+                 console.warn('Multimodal image analysis failed', imageErr);
+               }
             }
-
+            
             const exhibit: Exhibit = {
               id: Math.random().toString(36).substr(2, 9),
               exhibitNumber: extracted.exhibitNumber || `${currentCount + 1}A`,
@@ -160,10 +132,10 @@ const App: React.FC = () => {
               perjuryFlag: extracted.perjuryFlag,
               bestInterestMapping: extracted.bestInterestMapping
             };
-
+            
             await db.exhibits.add(exhibit);
             newExhibits.push(exhibit);
-
+            
             showToast(`Exhibit ${exhibit.exhibitNumber} Secured: ${file.name}`);
           } catch (error: any) {
             console.error('Error processing file:', error);
@@ -212,8 +184,8 @@ const App: React.FC = () => {
   };
 
   const filteredExhibits = exhibits.filter(ex => {
-    const matchesSearch = ex.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ex.exhibitNumber.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = ex.description.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          ex.exhibitNumber.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = filterCategory === 'all' || ex.category === filterCategory;
     return matchesSearch && matchesCategory;
   });
@@ -236,35 +208,35 @@ const App: React.FC = () => {
               This isn't just about courtrooms. This is the truth I kept safe for you, so you'll always know how hard I fought for your stability.
             </p>
           </div>
-
+          
           <div className="space-y-32">
             {exhibits.filter(ex => ex.reflection).length === 0 ? (
-              <div className="text-center py-32 bg-slate-900 rounded-[4rem] border border-white/5 shadow-sm flex flex-col items-center">
-                <Book className="w-16 h-16 text-slate-800 mb-6" />
-                <p className="text-slate-600 font-medium italic text-lg">Your legacy reflections will bloom here as evidence is processed.</p>
-              </div>
+               <div className="text-center py-32 bg-slate-900 rounded-[4rem] border border-white/5 shadow-sm flex flex-col items-center">
+                 <Book className="w-16 h-16 text-slate-800 mb-6" />
+                 <p className="text-slate-600 font-medium italic text-lg">Your legacy reflections will bloom here as evidence is processed.</p>
+               </div>
             ) : (
-              exhibits.filter(ex => ex.reflection).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()).map((ex, idx) => (
+              exhibits.filter(ex => ex.reflection).sort((a,b) => new Date(a.date).getTime() - new Date(b.date).getTime()).map((ex, idx) => (
                 <div key={ex.id} className="relative group max-w-2xl mx-auto">
-                  <div className="absolute -left-20 top-0 bottom-0 w-px bg-gradient-to-b from-pink-500/50 via-pink-500/10 to-transparent"></div>
-                  <div className="absolute -left-[102px] top-0 w-12 h-12 bg-slate-900 border-2 border-pink-500 rounded-full flex items-center justify-center text-pink-500 font-black shadow-lg group-hover:scale-125 transition-transform group-hover:bg-pink-500 group-hover:text-white group-hover:border-pink-500 duration-500">
-                    {idx + 1}
-                  </div>
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-black text-pink-400 uppercase tracking-[0.3em]">{ex.date}</span>
-                      <div className="h-px flex-1 bg-pink-500/10"></div>
-                    </div>
-                    <p className="text-3xl font-serif leading-relaxed text-slate-100 first-letter:text-5xl first-letter:font-black first-letter:text-pink-500 group-hover:text-white transition-colors">
-                      "{ex.reflection}"
-                    </p>
-                    <div className="pt-4 flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-500">
-                      <div className="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center text-white shadow-lg border border-white/5">
-                        <ShieldCheck size={14} className="text-pink-400" />
-                      </div>
-                      <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Digital Timestamp Secured • FDSJ-739-24</p>
-                    </div>
-                  </div>
+                   <div className="absolute -left-20 top-0 bottom-0 w-px bg-gradient-to-b from-pink-500/50 via-pink-500/10 to-transparent"></div>
+                   <div className="absolute -left-[102px] top-0 w-12 h-12 bg-slate-900 border-2 border-pink-500 rounded-full flex items-center justify-center text-pink-500 font-black shadow-lg group-hover:scale-125 transition-transform group-hover:bg-pink-500 group-hover:text-white group-hover:border-pink-500 duration-500">
+                     {idx + 1}
+                   </div>
+                   <div className="space-y-6">
+                     <div className="flex items-center gap-3">
+                       <span className="text-[10px] font-black text-pink-400 uppercase tracking-[0.3em]">{ex.date}</span>
+                       <div className="h-px flex-1 bg-pink-500/10"></div>
+                     </div>
+                     <p className="text-3xl font-serif leading-relaxed text-slate-100 first-letter:text-5xl first-letter:font-black first-letter:text-pink-500 group-hover:text-white transition-colors">
+                       "{ex.reflection}"
+                     </p>
+                     <div className="pt-4 flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-500">
+                        <div className="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center text-white shadow-lg border border-white/5">
+                          <ShieldCheck size={14} className="text-pink-400" />
+                        </div>
+                        <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Digital Timestamp Secured • FDSJ-739-24</p>
+                     </div>
+                   </div>
                 </div>
               ))
             )}
@@ -276,23 +248,23 @@ const App: React.FC = () => {
     switch (activeTab) {
       case 'dashboard':
         return <Dashboard exhibits={exhibits} onUploadClick={() => fileInputRef.current?.click()} />;
-
+      
       case 'exhibits':
         return (
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-900 p-8 rounded-[2.5rem] border border-white/5 shadow-sm">
               <div className="flex-1 relative">
                 <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-                <input
-                  type="text"
-                  placeholder="Search the record..."
+                <input 
+                  type="text" 
+                  placeholder="Search the record..." 
                   className="w-full pl-14 pr-6 py-4 bg-slate-950 border border-white/5 rounded-[1.5rem] focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all text-sm font-medium text-white"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
               <div className="flex items-center gap-3">
-                <select
+                <select 
                   className="bg-slate-950 border border-white/5 rounded-[1.5rem] px-6 py-4 text-xs font-black uppercase tracking-widest focus:outline-none cursor-pointer text-slate-400 hover:text-white transition-colors"
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value as any)}
@@ -325,7 +297,7 @@ const App: React.FC = () => {
           <div className="max-w-4xl mx-auto space-y-12 pb-20">
             <div className="bg-slate-900 rounded-[4rem] p-16 text-white shadow-2xl overflow-hidden relative group border border-white/5">
               <div className="relative z-10">
-                <h2 className="text-6xl font-black mb-6 tracking-tighter leading-tight italic">Forensic Intelligence<br />Prompt Library</h2>
+                <h2 className="text-6xl font-black mb-6 tracking-tighter leading-tight italic">Forensic Intelligence<br/>Prompt Library</h2>
                 <p className="text-slate-400 mb-12 font-medium text-xl max-w-xl leading-relaxed">
                   Engineered prompts specifically for the New Brunswick Family Court system.
                 </p>
@@ -347,15 +319,15 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex relative overflow-hidden">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-
+      
       <main className="ml-64 flex-1 p-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 to-slate-950">
         <header className="flex items-center justify-between mb-12 print:hidden">
           <div className="flex items-center gap-6">
             <div>
               <h1 className="text-4xl font-black text-white tracking-tighter uppercase italic">
                 {legacyMode ? 'The Legacy Journey' :
-                  activeTab === 'dashboard' ? 'Evidence Command' :
-                    activeTab.charAt(0).toUpperCase() + activeTab.slice(1).replace(/([A-Z])/g, ' $1')}
+                 activeTab === 'dashboard' ? 'Evidence Command' : 
+                 activeTab.charAt(0).toUpperCase() + activeTab.slice(1).replace(/([A-Z])/g, ' $1')}
               </h1>
               <p className="text-slate-500 text-sm font-bold mt-2 flex items-center gap-3 uppercase tracking-[0.2em]">
                 Ref: <span className="font-black text-blue-500">{CASE_DEFAULTS.caseNumber}</span> • {CASE_DEFAULTS.parties}
@@ -364,19 +336,20 @@ const App: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <button
+            <button 
               onClick={() => setLegacyMode(!legacyMode)}
-              className={`flex items-center gap-3 px-8 py-5 rounded-[1.5rem] font-black text-xs transition-all border-2 group shadow-xl ${legacyMode
-                ? 'bg-pink-600 border-pink-600 text-white'
+              className={`flex items-center gap-3 px-8 py-5 rounded-[1.5rem] font-black text-xs transition-all border-2 group shadow-xl ${
+                legacyMode 
+                ? 'bg-pink-600 border-pink-600 text-white' 
                 : 'bg-slate-900 border-white/5 text-slate-400 hover:text-pink-500 hover:border-pink-500 shadow-slate-200/50'
-                }`}
+              }`}
             >
               {legacyMode ? <Scale className="w-4 h-4" /> : <Heart className="w-4 h-4" />}
               {legacyMode ? 'SWITCH TO LITIGATION' : 'HARPER\'S LEGACY'}
             </button>
 
             <input type="file" ref={fileInputRef} className="hidden" multiple accept="image/*,.pdf" onChange={handleFileUpload} />
-            <button
+            <button 
               onClick={() => fileInputRef.current?.click()}
               disabled={isProcessing}
               className="bg-blue-600 text-white px-10 py-5 rounded-[1.5rem] font-black text-xs uppercase tracking-widest flex items-center gap-3 hover:bg-blue-500 transition-all shadow-2xl disabled:opacity-50"
@@ -388,16 +361,7 @@ const App: React.FC = () => {
         </header>
 
         <div className="animate-in fade-in duration-700">
-          {isLoading ? (
-            <div className="flex h-[60vh] items-center justify-center">
-              <div className="flex flex-col items-center gap-4 text-slate-500">
-                <Loader2 className="w-12 h-12 animate-spin text-blue-500" />
-                <p className="uppercase tracking-widest text-xs font-black">Connecting to Secure Evidence Vault...</p>
-              </div>
-            </div>
-          ) : (
-            renderContent()
-          )}
+          {renderContent()}
         </div>
 
         {isProcessing && (
@@ -408,7 +372,7 @@ const App: React.FC = () => {
               </div>
               <div className="space-y-4">
                 <h2 className="text-4xl font-black text-white flex items-center justify-center gap-3 tracking-tighter italic">
-                  PLACED // ANALYZING
+                   PLACED // ANALYZING
                 </h2>
                 <p className="text-slate-500 text-lg leading-relaxed font-medium">
                   Hashing file metadata and verifying <span className="font-black text-blue-500">Chain of Custody</span>.
@@ -423,8 +387,9 @@ const App: React.FC = () => {
 
         {toast && (
           <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[60] animate-in slide-in-from-bottom-10 fade-in duration-500 print:hidden">
-            <div className={`flex items-center gap-4 px-8 py-5 rounded-[2rem] shadow-2xl border-2 backdrop-blur-xl ${toast.type === 'success' ? 'bg-emerald-950/80 border-emerald-500/30 text-emerald-100' : 'bg-rose-950/80 border-rose-500/30 text-rose-100'
-              }`}>
+            <div className={`flex items-center gap-4 px-8 py-5 rounded-[2rem] shadow-2xl border-2 backdrop-blur-xl ${
+              toast.type === 'success' ? 'bg-emerald-950/80 border-emerald-500/30 text-emerald-100' : 'bg-rose-950/80 border-rose-500/30 text-rose-100'
+            }`}>
               {toast.type === 'success' ? <CheckCircle className="text-emerald-500" /> : <AlertCircle className="text-rose-500" />}
               <span className="font-black text-xs uppercase tracking-widest">{toast.message}</span>
             </div>
@@ -435,13 +400,7 @@ const App: React.FC = () => {
       <div className="print:hidden">
         <LegalChatbot exhibits={exhibits} />
       </div>
-<<<<<<< HEAD
-
-=======
       
-      <Analytics />
-      
->>>>>>> d109056ace3c241e92cff73d6b7a7435eae5f18f
       <style>{`
         .shadow-neon { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
         @keyframes progress {
